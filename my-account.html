@@ -1,0 +1,2849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Trendifyo</title>
+    <meta name="description" content="Manage your Trendifyo account, orders, profile, and preferences.">
+    <link rel="icon" href="website/Trendifyo in vibrant blue and purple.ico" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #f0f4ff;
+            background: radial-gradient(circle at top left, rgba(124, 92, 255, 0.18), transparent 22%),
+                        radial-gradient(circle at bottom right, rgba(27, 189, 238, 0.12), transparent 18%),
+                        linear-gradient(180deg, #02040f 0%, #070b1f 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* ========================
+           HEADER
+        ======================== */
+        header.site-header {
+        background: transparent;
+            color: white;
+            padding: 0.6rem 0;
+            height: 72px;
+            position: relative;
+            top: 0;
+            z-index: 100;
+        box-shadow: none;
+        border-bottom: none;
+        }
+
+        header.site-header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 32px;
+            height: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .logo-image img {
+            height: 46px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.08rem;
+        }
+
+        .brand-name {
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            background: linear-gradient(135deg, #7b5cf2 0%, #3d8bff 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .brand-tagline {
+            font-size: 0.74rem;
+            color: rgba(255,255,255,0.75);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.88);
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            border-radius: 999px;
+            transition: all 0.25s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a.cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(102,126,234,0.25);
+        }
+        .nav-links .dropdown { position: relative; }
+        .nav-links .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(15, 22, 47, 0.95); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 0.5rem 0; list-style: none; display: none; flex-direction: column; min-width: 120px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); z-index: 1000; }
+        .nav-links .dropdown:hover .dropdown-menu { display: flex; }
+        .nav-links .dropdown-menu li { width: 100%; }
+        .nav-links .dropdown-menu a { display: block; padding: 0.7rem 1.2rem; color: rgba(255,255,255,0.85); border-radius: 0; transition: background 0.2s ease; text-align: center; font-size: 0.9rem; }
+        .nav-links .dropdown-menu a:hover { background: rgba(255,255,255,0.1); color: #fff; transform: none; }
+
+        @media (max-width: 768px) {
+            header.site-header nav {
+                padding: 0 16px;
+            }
+
+            .brand-tagline {
+                display: none;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .nav-links a {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ========================
+           MAIN CONTAINER
+        ======================== */
+        .account-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 32px;
+        }
+
+        .account-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .welcome-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .welcome-text h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #7b5cf2 0%, #3d8bff 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .welcome-text p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+        }
+
+        .account-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #7b5cf2 0%, #3d8bff 100%);
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(124, 92, 255, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 32px rgba(124, 92, 255, 0.35);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* ========================
+           ACCOUNT LAYOUT
+        ======================== */
+        .account-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        /* ========================
+           SIDEBAR NAVIGATION
+        ======================== */
+        .account-sidebar {
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 28px;
+            padding: 1.5rem 0;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(255,255,255,0.02);
+        }
+
+        .nav-item {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.06);
+            border-left-color: #7b5cf2;
+        }
+
+        .nav-item a.active {
+            color: #fff;
+            background: linear-gradient(90deg, rgba(124, 92, 255, 0.15), transparent);
+            border-left-color: #7b5cf2;
+        }
+
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ========================
+           MAIN CONTENT AREA
+        ======================== */
+        .account-main {
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 28px;
+            padding: 2.5rem;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(255,255,255,0.02);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========================
+           SECTION: DASHBOARD
+        ======================== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 1.8rem;
+            text-align: left;
+            transition: all 0.25s ease;
+            box-shadow: 0 16px 32px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.02);
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #7b5cf2, #3d8bff);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border-color: rgba(124, 92, 255, 0.4);
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.25);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .stat-icon {
+            font-size: 1.4rem;
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: rgba(124, 92, 255, 0.15);
+            border: 1px solid rgba(124, 92, 255, 0.25);
+            color: #b6d7ff;
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #b6d7ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.25rem;
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(238,243,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            margin-bottom: 1.8rem;
+            color: #f7fbff;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* ========================
+           RECENT ORDERS
+        ======================== */
+        .recent-orders {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .order-card {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            padding: 1.5rem 1.8rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            align-items: center;
+            transition: all 0.25s ease;
+            background: transparent;
+        }
+
+        .order-card:last-child {
+            border-bottom: none;
+        }
+
+        .order-card:hover {
+            background: rgba(255,255,255,0.04);
+        }
+
+        .order-info {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .order-number {
+            font-weight: 700;
+            color: #f7fbff;
+            font-size: 1.05rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .order-date {
+            font-size: 0.85rem;
+            color: rgba(238,243,255,0.7);
+        }
+
+        .order-status {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.4rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border: 1px solid transparent;
+        }
+
+        .status-pending {
+            background: rgba(255,193,7,0.12);
+            border-color: rgba(255,193,7,0.25);
+            color: #ffd166;
+        }
+
+        .status-shipped {
+            background: rgba(87,188,255,0.12);
+            border-color: rgba(87,188,255,0.25);
+            color: #57bcff;
+        }
+
+        .status-delivered {
+            background: rgba(41,216,165,0.12);
+            border-color: rgba(41,216,165,0.25);
+            color: #29d8a5;
+        }
+
+        .status-cancelled {
+            background: rgba(255,107,107,0.12);
+            border-color: rgba(255,107,107,0.25);
+            color: #ff6b6b;
+        }
+
+        .order-total {
+            font-weight: 800;
+            color: #f7fbff;
+            font-size: 1.1rem;
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .btn-sm {
+            padding: 0.6rem 1rem;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-sm-primary {
+            background: linear-gradient(135deg, #7b5cf2 0%, #3d8bff 100%);
+            box-shadow: 0 8px 16px rgba(124, 92, 255, 0.2);
+            color: #fff;
+        }
+
+        .btn-sm-primary:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-sm-secondary {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .btn-sm-secondary:hover {
+            background: rgba(255,255,255,0.12);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h3 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ========================
+           ORDER HISTORY TABLE
+        ======================== */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-input {
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .filter-input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .filter-input:focus {
+            outline: none;
+            border-color: rgba(102,126,234,0.5);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .orders-table thead {
+            background: rgba(255,255,255,0.04);
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .orders-table th {
+            padding: 1rem;
+            text-align: left;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .orders-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.8);
+        }
+
+        .orders-table tbody tr {
+            transition: background 0.25s ease;
+        }
+
+        .orders-table tbody tr:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* ========================
+           PROFILE FORM
+        ======================== */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.25s ease;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder,
+        input[type="tel"]::placeholder,
+        input[type="password"]::placeholder,
+        textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="password"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: rgba(102,126,234,0.5);
+            background: rgba(255,255,255,0.08);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .profile-photo-section {
+            display: flex;
+            align-items: flex-end;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .profile-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .photo-upload {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-label {
+            display: inline-flex;
+            padding: 0.75rem 1.25rem;
+            background: rgba(102,126,234,0.2);
+            border: 1px solid rgba(102,126,234,0.3);
+            border-radius: 8px;
+            color: #a8d5ff;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-weight: 600;
+        }
+
+        .file-upload-label:hover {
+            background: rgba(102,126,234,0.3);
+        }
+
+        /* ========================
+           ADDRESS MANAGEMENT
+        ======================== */
+        .addresses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .address-card {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.25s ease;
+        }
+
+        .address-card:hover {
+            border-color: rgba(102,126,234,0.4);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .address-card.add-new {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            cursor: pointer;
+            border-style: dashed;
+        }
+
+        .address-card.add-new:hover {
+            border-color: rgba(102,126,234,0.6);
+        }
+
+        .address-label {
+            display: inline-block;
+            padding: 0.3rem 0.75rem;
+            background: rgba(102,126,234,0.2);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #a8d5ff;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .address-text {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .address-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn-xs {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-xs-edit {
+            background: rgba(102,126,234,0.2);
+            color: #a8d5ff;
+        }
+
+        .btn-xs-edit:hover {
+            background: rgba(102,126,234,0.3);
+        }
+
+        .btn-xs-delete {
+            background: rgba(255,107,107,0.2);
+            color: #ff6b6b;
+        }
+
+        .btn-xs-delete:hover {
+            background: rgba(255,107,107,0.3);
+        }
+
+        /* ========================
+           PAYMENT METHODS
+        ======================== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(102,126,234,0.15), rgba(118,75,162,0.15));
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1.75rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08), transparent);
+            border-radius: 50%;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-network {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-number {
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1rem;
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .card-holder {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .card-holder-label {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-holder-name {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .card-expiry {
+            text-align: right;
+        }
+
+        .card-expiry-label {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-expiry-date {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.75rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .default-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            cursor: pointer;
+        }
+
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        /* ========================
+           WISHLIST GRID
+        ======================== */
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .wishlist-item {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+
+        .wishlist-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(102,126,234,0.3);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .wishlist-img {
+            width: 100%;
+            height: 180px;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: rgba(255,255,255,0.2);
+        }
+
+        .wishlist-content {
+            padding: 1rem;
+        }
+
+        .wishlist-name {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .wishlist-price {
+            color: #a8d5ff;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .wishlist-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .wishlist-actions button {
+            flex: 1;
+            padding: 0.6rem;
+            border: 1px solid rgba(102,126,234,0.3);
+            background: rgba(102,126,234,0.1);
+            color: #a8d5ff;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .wishlist-actions button:hover {
+            background: rgba(102,126,234,0.2);
+        }
+
+        /* ========================
+           REWARDS SECTION
+        ======================== */
+        .points-section {
+            background: linear-gradient(135deg, rgba(102,126,234,0.15), rgba(118,75,162,0.15));
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .points-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ffd972;
+            margin-bottom: 0.5rem;
+        }
+
+        .points-label {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .referral-section {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .referral-code {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .referral-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .copy-btn {
+            padding: 0.75rem 1.25rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .rewards-list {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .reward-item {
+            background: rgba(255,255,255,0.05);
+            border-left: 3px solid #667eea;
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .reward-name {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .reward-points {
+            color: #ffd972;
+            font-weight: 700;
+        }
+
+        .reward-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(102,126,234,0.2);
+            color: #a8d5ff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .reward-btn:hover {
+            background: rgba(102,126,234,0.3);
+        }
+
+        .reward-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ========================
+           LOADING & ANIMATIONS
+        ======================== */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.2);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ========================
+           FOOTER
+        ======================== */
+        footer.site-footer {
+            background: rgba(8, 16, 38, 0.98);
+            color: #d4d9ee;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(180px, 1fr));
+            gap: 2rem;
+            max-width: 100%;
+            margin: 0 auto 1.5rem;
+            padding: 0 32px;
+        }
+
+        .footer-column h3,
+        .footer-column h4 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #c7d2ff;
+            text-decoration: none;
+            margin-bottom: 0.75rem;
+            transition: color 0.25s ease;
+        }
+
+        .footer-column a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #8fa4d1;
+            font-size: 0.95rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-socials a {
+            color: #d6e2ff;
+            text-decoration: none;
+        }
+
+        .footer-socials a:hover {
+            color: #fff;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 1.5rem;
+            background: linear-gradient(135deg, rgba(124,102,255,0.1), rgba(87,188,255,0.05));
+            border: 1px solid rgba(124,102,255,0.2);
+            border-radius: 20px;
+            color: #eef3ff;
+            font-size: 0.95rem;
+            margin-top: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .trust-badge .icon-container {
+            width: 40px; height: 40px;
+            border-radius: 12px;
+            background: rgba(124, 102, 255, 0.2);
+            display: grid; place-items: center;
+            font-size: 1.2rem;
+            border: 1px solid rgba(124,102,255,0.3);
+        }
+
+        /* ========================
+           RESPONSIVE DESIGN
+        ======================== */
+        @media (max-width: 1024px) {
+            .account-container {
+                grid-template-columns: 240px 1fr;
+                gap: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .account-wrapper {
+                padding: 1.5rem 16px;
+            }
+
+            .account-container {
+                grid-template-columns: 1fr;
+            }
+
+            .account-sidebar {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 0.5rem;
+                padding: 0;
+                position: static;
+                background: transparent;
+                border: none;
+                margin-bottom: 1rem;
+            }
+
+            .nav-item a {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding: 0.75rem 0.5rem;
+                font-size: 0.75rem;
+                gap: 0.5rem;
+                border: 1px solid rgba(255,255,255,0.12);
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 8px;
+                border-left: none;
+            }
+
+            .nav-item a:hover {
+                border-left: none;
+            }
+
+            .nav-item a.active {
+                border-left: none;
+                background: rgba(124, 92, 255, 0.2);
+            }
+
+            .welcome-section {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .welcome-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .account-actions {
+                justify-content: flex-start;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .orders-table {
+                font-size: 0.85rem;
+            }
+
+            .orders-table th,
+            .orders-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .addresses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .wishlist-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            header.site-header nav {
+                padding: 0 12px;
+            }
+
+            .logo-text {
+                min-width: auto;
+            }
+
+            .account-wrapper {
+                padding: 1rem 12px;
+            }
+
+            .welcome-text h1 {
+                font-size: 1.5rem;
+            }
+
+            .account-main {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.85rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #667eea;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+    <style>
+        .scroll-top { position: fixed; right: 20px; bottom: 24px; width: 48px; height: 48px; border-radius: 50%; border: none; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; font-size: 1.3rem; cursor: pointer; display: grid; place-items: center; box-shadow: 0 18px 40px rgba(0,0,0,0.22); opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.25s ease, transform 0.25s ease; z-index: 1100; }
+        .scroll-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    </style>
+    <style>
+        .premium-particles { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .particle { position: absolute; border-radius: 50%; animation: floatUp infinite linear; }
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) translateX(0) scale(0.5); opacity: 0; }
+            20%, 80% { opacity: var(--max-opacity, 0.8); }
+            100% { transform: translateY(-10vh) translateX(var(--drift)) scale(1.2); opacity: 0; }
+        }
+        .hero-network { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.85; }
+    </style>
+</head>
+<body>
+    <canvas id="hero-network" class="hero-network"></canvas>
+    <div class="premium-particles" id="premium-particles"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ========================
+         HEADER
+    ======================== -->
+    <header class="site-header">
+        <nav class="container">
+            <a class="logo" href="index.html">
+                <div class="logo-image">
+                    <img src="website/Trendifyo in vibrant blue and purple.ico" alt="Trendifyo logo">
+                </div>
+                <div class="logo-text">
+                    <span class="brand-name">Trendifyo</span>
+                    <span class="brand-tagline">Curated trend delivery</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a class="cart-link" href="javascript:void(0)" onclick="toggleCart(event); return false;">Cart (0)</a></li>
+                <li><a class="cta" href="/trendifyo/login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ========================
+         MAIN CONTENT
+    ======================== -->
+    <main id="main-content" class="account-wrapper">
+        <!-- Welcome Section -->
+        <div class="account-header">
+            <div class="welcome-section">
+                <div class="welcome-text">
+                    <h1 style="display: flex; align-items: center; gap: 0.5rem;">Hi <span id="user-name">User</span>, Welcome Back! <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 32px; height: 32px;"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></h1>
+                    <p>Manage your account, orders, and preferences</p>
+                </div>
+                <div class="account-actions">
+                    <a href="shop.html" class="btn btn-primary">Continue Shopping</a>
+                    <a href="support.html" class="btn btn-secondary">Get Support</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Account Container -->
+        <div class="account-container">
+            <!-- Sidebar Navigation -->
+            <aside class="account-sidebar" role="navigation" aria-label="Account menu">
+                <ul>
+                    <li class="nav-item">
+                        <a href="#dashboard" class="nav-link active" data-section="dashboard" onclick="switchSection('dashboard', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#orders" class="nav-link" data-section="orders" onclick="switchSection('orders', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 11l3 3L22 4"></path>
+                                <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Orders</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#cart-history" class="nav-link" data-section="cart-history" onclick="switchSection('cart-history', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
+                            <span>Cart History</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#profile" class="nav-link" data-section="profile" onclick="switchSection('profile', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#addresses" class="nav-link" data-section="addresses" onclick="switchSection('addresses', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>Addresses</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#payment" class="nav-link" data-section="payment" onclick="switchSection('payment', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                <path d="M1 8h22"></path>
+                            </svg>
+                            <span>Payment</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#wishlist" class="nav-link" data-section="wishlist" onclick="switchSection('wishlist', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            <span>Wishlist</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#rewards" class="nav-link" data-section="rewards" onclick="switchSection('rewards', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="8" r="7"></circle>
+                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                            </svg>
+                            <span>Rewards</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#support" class="nav-link" data-section="support" onclick="switchSection('support', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 16v-4"></path>
+                                <path d="M12 8h.01"></path>
+                            </svg>
+                            <span>Support</span>
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div class="account-main">
+
+                <!-- ========================
+                     SECTION 1: DASHBOARD
+                ======================== -->
+                <section id="dashboard" class="section active">
+                    <h2 class="section-title">Dashboard Overview</h2>
+
+                    <!-- Quick Stats -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
+                                <div class="stat-label">Total Orders</div>
+                            </div>
+                            <div class="stat-value">12</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+                                <div class="stat-label">Loyalty Points</div>
+                            </div>
+                            <div class="stat-value">850</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                                <div class="stat-label">Wishlist Items</div>
+                            </div>
+                            <div class="stat-value">5</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></div>
+                                <div class="stat-label">Member Status</div>
+                            </div>
+                            <div class="stat-value">Gold</div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Orders -->
+                    <h3 class="section-title">Recent Orders</h3>
+                    <div class="recent-orders">
+                        <div class="order-card">
+                            <div class="order-info">
+                                <div>
+                                    <div class="order-number">Order #ORD-2026-1240</div>
+                                    <div class="order-date">April 20, 2026</div>
+                                    <div style="margin-top: 0.6rem;"><span class="order-status status-delivered">✓ Delivered</span></div>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="order-total">₹2,450</div>
+                                <div class="order-actions">
+                                    <button class="btn-sm btn-sm-primary" onclick="viewOrder('ORD-2026-1240')">View</button>
+                                    <button class="btn-sm btn-sm-secondary" onclick="reorderItems('ORD-2026-1240')">Reorder</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="order-card">
+                            <div class="order-info">
+                                <div>
+                                    <div class="order-number">Order #ORD-2026-1239</div>
+                                    <div class="order-date">April 15, 2026</div>
+                                    <div style="margin-top: 0.6rem;"><span class="order-status status-shipped">📦 Shipped</span></div>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="order-total">₹1,890</div>
+                                <div class="order-actions">
+                                    <button class="btn-sm btn-sm-primary" onclick="viewOrder('ORD-2026-1239')">View</button>
+                                    <button class="btn-sm btn-sm-secondary" onclick="trackOrder('ORD-2026-1239')">Track</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="order-card">
+                            <div class="order-info">
+                                <div>
+                                    <div class="order-number">Order #ORD-2026-1238</div>
+                                    <div class="order-date">April 10, 2026</div>
+                                    <div style="margin-top: 0.6rem;"><span class="order-status status-pending">⏳ Processing</span></div>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="order-total">₹3,200</div>
+                                <div class="order-actions">
+                                    <button class="btn-sm btn-sm-primary" onclick="viewOrder('ORD-2026-1238')">View</button>
+                                    <button class="btn-sm btn-sm-secondary" onclick="trackOrder('ORD-2026-1238')">Track</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trust-badge">
+                        <div class="icon-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+                        <div>
+                            <strong style="display: block; margin-bottom: 0.2rem; font-size: 1rem;">Secure Account</strong>
+                            <span style="color: rgba(238,243,255,0.7);">Your account is secure. Orders are processed safely with 256-bit SSL encryption.</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================
+                     SECTION 2: ORDER HISTORY
+                ======================== -->
+                <section id="orders" class="section">
+                    <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Order History</h2>
+
+                    <div class="filters">
+                        <input type="text" class="filter-input" placeholder="Search order number..." id="searchOrder">
+                        <select class="filter-input" id="filterStatus">
+                            <option value="">All Statuses</option>
+                            <option value="pending">Processing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                        </select>
+                        <select class="filter-input" id="filterDate">
+                            <option value="">All Time</option>
+                            <option value="30">Last 30 Days</option>
+                            <option value="90">Last 90 Days</option>
+                            <option value="365">Last Year</option>
+                        </select>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Items</th>
+                                    <th>Status</th>
+                                    <th>Total</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#ORD-2026-1240</td>
+                                    <td>Apr 20, 2026</td>
+                                    <td>Wireless Headphones</td>
+                                    <td><span class="order-status status-delivered">Delivered</span></td>
+                                    <td>₹2,450</td>
+                                    <td>
+                                        <button class="btn-sm btn-sm-primary" onclick="viewOrder('ORD-2026-1240')">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-2026-1239</td>
+                                    <td>Apr 15, 2026</td>
+                                    <td>2 items</td>
+                                    <td><span class="order-status status-shipped">Shipped</span></td>
+                                    <td>₹1,890</td>
+                                    <td>
+                                        <button class="btn-sm btn-sm-primary" onclick="trackOrder('ORD-2026-1239')">Track</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-2026-1238</td>
+                                    <td>Apr 10, 2026</td>
+                                    <td>Smart Watch</td>
+                                    <td><span class="order-status status-pending">Processing</span></td>
+                                    <td>₹3,200</td>
+                                    <td>
+                                        <button class="btn-sm btn-sm-secondary" onclick="cancelOrder('ORD-2026-1238')">Cancel</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ========================
+                     SECTION 3: PROFILE EDIT
+                ======================== -->
+                <section id="profile" class="section">
+                    <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Edit Profile</h2>
+
+                    <div class="profile-photo-section">
+                        <div class="profile-photo" id="profilePhotoPreview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px; color: rgba(255,255,255,0.4);"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+                        <div class="photo-upload">
+                            <label for="photoInput" class="file-upload-label">Upload Photo</label>
+                            <input type="file" id="photoInput" accept="image/*" onchange="previewPhoto(event)">
+                            <p style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">Max 5MB. JPG or PNG.</p>
+                        </div>
+                    </div>
+
+                    <form onsubmit="saveProfile(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" value="" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" value="" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" value="" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="text" id="dob" placeholder="DD/MM/YYYY">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea id="bio" placeholder="Tell us about yourself..."></textarea>
+                        </div>
+
+                        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 2rem 0;">
+
+                        <h3 style="color: #fff; margin-bottom: 1rem; font-size: 1.1rem;">Change Password</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword" placeholder="Enter current password">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword" placeholder="Enter new password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- ========================
+                     SECTION 4: ADDRESSES
+                ======================== -->
+                <section id="addresses" class="section">
+                    <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Manage Addresses</h2>
+
+                    <div class="addresses-grid">
+                        <div class="address-card">
+                            <span class="address-label">Home</span>
+                            <div class="address-text">
+                                123 Oak Street<br>
+                                Bangalore, KA 560001<br>
+                                India<br>
+                                +91 98765 43210
+                            </div>
+                            <div class="address-actions">
+                                <button class="btn-xs btn-xs-edit" onclick="editAddress('home')">Edit</button>
+                                <button class="btn-xs btn-xs-delete" onclick="deleteAddress('home')">Delete</button>
+                            </div>
+                        </div>
+
+                        <div class="address-card">
+                            <span class="address-label">Work</span>
+                            <div class="address-text">
+                                456 Tech Park<br>
+                                Whitefield, Bangalore, KA 560066<br>
+                                India<br>
+                                +91 98765 43210
+                            </div>
+                            <div class="address-actions">
+                                <button class="btn-xs btn-xs-edit" onclick="editAddress('work')">Edit</button>
+                                <button class="btn-xs btn-xs-delete" onclick="deleteAddress('work')">Delete</button>
+                            </div>
+                        </div>
+
+                        <div class="address-card add-new" onclick="addNewAddress()">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">+</div>
+                                <div style="color: rgba(255,255,255,0.7); font-weight: 600;">Add New Address</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================
+                     SECTION 5: PAYMENT METHODS
+                ======================== -->
+                <section id="payment" class="section">
+                    <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg> Payment Methods</h2>
+
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-network">💳 Visa</div>
+                                <div class="card-number">•••• •••• •••• 4242</div>
+                                <div class="card-details">
+                                    <div class="card-holder">
+                                        <span class="card-holder-label">Cardholder</span>
+                                        <span class="card-holder-name">Card Holder</span>
+                                    </div>
+                                    <div class="card-expiry">
+                                        <span class="card-expiry-label">Expires</span>
+                                        <span class="card-expiry-date">12/26</span>
+                                    </div>
+                                </div>
+                                <label class="default-toggle">
+                                    <input type="checkbox" class="checkbox" checked>
+                                    Default Payment Method
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-network">💳 Mastercard</div>
+                                <div class="card-number">•••• •••• •••• 8765</div>
+                                <div class="card-details">
+                                    <div class="card-holder">
+                                        <span class="card-holder-label">Cardholder</span>
+                                        <span class="card-holder-name">Card Holder</span>
+                                    </div>
+                                    <div class="card-expiry">
+                                        <span class="card-expiry-label">Expires</span>
+                                        <span class="card-expiry-date">09/27</span>
+                                    </div>
+                                </div>
+                                <label class="default-toggle">
+                                    <input type="checkbox" class="checkbox">
+                                    Default Payment Method
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="card" style="display: flex; align-items: center; justify-content: center; cursor: pointer;" onclick="addNewCard()">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">+</div>
+                                <div style="color: rgba(255,255,255,0.7); font-weight: 600;">Add Payment Method</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trust-badge" style="margin-top: 2rem;">
+                        <span style="font-size: 1.25rem;">🛡️</span>
+                        <span>Your payment information is encrypted and secure. We never store full card details.</span>
+                    </div>
+                </section>
+
+                <!-- ========================
+                     SECTION 6: WISHLIST
+                ======================== -->
+                <section id="wishlist" class="section">
+                    <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> Wishlist</h2>
+
+                    <div class="wishlist-grid">
+                        <div class="wishlist-item">
+                            <div class="wishlist-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 32px; height: 32px;"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div>
+                            <div class="wishlist-content">
+                                <div class="wishlist-name">Wireless Headphones</div>
+                                <div class="wishlist-price">₹2,450</div>
+                                <div class="wishlist-actions">
+                                    <button onclick="addWishlistToCart('headphones')">Add to Cart</button>
+                                    <button onclick="removeFromWishlist('headphones')">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wishlist-item">
+                            <div class="wishlist-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 32px; height: 32px;"><rect x="6" y="5" width="12" height="14" rx="2"></rect><line x1="12" y1="2" x2="12" y2="5"></line><line x1="12" y1="19" x2="12" y2="22"></line><line x1="9" y1="2" x2="15" y2="2"></line><line x1="9" y1="22" x2="15" y2="22"></line></svg></div>
+                            <div class="wishlist-content">
+                                <div class="wishlist-name">Smart Watch Pro</div>
+                                <div class="wishlist-price">₹3,200</div>
+                                <div class="wishlist-actions">
+                                    <button onclick="addWishlistToCart('smartwatch')">Add to Cart</button>
+                                    <button onclick="removeFromWishlist('smartwatch')">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wishlist-item">
+                            <div class="wishlist-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 32px; height: 32px;"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg></div>
+                            <div class="wishlist-content">
+                                <div class="wishlist-name">ANC Earbuds</div>
+                                <div class="wishlist-price">₹1,890</div>
+                                <div class="wishlist-actions">
+                                    <button onclick="addWishlistToCart('earbuds')">Add to Cart</button>
+                                    <button onclick="removeFromWishlist('earbuds')">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wishlist-item">
+                            <div class="wishlist-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 32px; height: 32px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
+                            <div class="wishlist-content">
+                                <div class="wishlist-name">4K Webcam</div>
+                                <div class="wishlist-price">₹4,590</div>
+                                <div class="wishlist-actions">
+                                    <button onclick="addWishlistToCart('webcam')">Add to Cart</button>
+                                    <button onclick="removeFromWishlist('webcam')">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wishlist-item">
+                            <div class="wishlist-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 32px; height: 32px;"><path d="M14 2v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V2"></path><path d="M14 10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2"></path><path d="M10 14v8"></path></svg></div>
+                            <div class="wishlist-content">
+                                <div class="wishlist-name">USB-C Hub</div>
+                                <div class="wishlist-price">₹890</div>
+                                <div class="wishlist-actions">
+                                    <button onclick="addWishlistToCart('hub')">Add to Cart</button>
+                                    <button onclick="removeFromWishlist('hub')">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================
+                     SECTION: CART HISTORY
+                ======================== -->
+                <section id="cart-history" class="section">
+                    <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg> Cart History</h2>
+                    <div id="accountCartList" class="recent-orders"></div>
+                </section>
+
+                <!-- ========================
+                     SECTION 7: REWARDS
+                ======================== -->
+                <section id="rewards" class="section">
+                    <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg> Loyalty & Rewards</h2>
+
+                    <div class="points-section">
+                        <div class="points-value" id="loyaltyPointsValue">0</div>
+                        <div class="points-label">Loyalty Points Available</div>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 0;">Earn 1 point per ₹10 spent. Redeem for discounts and exclusive perks!</p>
+                    </div>
+
+                    <div class="referral-section">
+                        <h3 style="color: #fff; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Refer a Friend</h3>
+                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Share your referral code and earn 200 bonus points for each successful referral!</p>
+                        <div class="referral-code">
+                            <input type="text" class="referral-input" value="TRENDIFYO-REF-2026" readonly>
+                            <button class="copy-btn" onclick="copyReferralCode()">Copy Code</button>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #fff; margin: 2rem 0 1rem;">Available Rewards</h3>
+                    <div class="rewards-list">
+                        <div class="reward-item">
+                            <div>
+                                <div class="reward-name">10% Off Your Next Order</div>
+                                <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 0.25rem;">Minimum purchase ₹500</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="reward-points">250 points</div>
+                                <button class="reward-btn" onclick="redeemReward('discount10')">Redeem</button>
+                            </div>
+                        </div>
+
+                        <div class="reward-item">
+                            <div>
+                                <div class="reward-name">Free Shipping on Any Order</div>
+                                <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 0.25rem;">Valid for 1 order</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="reward-points">400 points</div>
+                                <button class="reward-btn" onclick="redeemReward('shipping')">Redeem</button>
+                            </div>
+                        </div>
+
+                        <div class="reward-item">
+                            <div>
+                                <div class="reward-name">Exclusive Member Gift</div>
+                                <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 0.25rem;">Limited Edition Item</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="reward-points">650 points</div>
+                                <button class="reward-btn" onclick="redeemReward('gift')" disabled>Coming Soon</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================
+                     SECTION 8: SUPPORT
+                ======================== -->
+                <section id="support" class="section">
+                    <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Support & Help</h2>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: all 0.25s ease;" onclick="window.open('https://help.trendifyo.com', '_blank')" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                            <div style="margin-bottom: 0.75rem; color: #a8d5ff;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></div>
+                            <div style="color: #fff; font-weight: 600; margin-bottom: 0.5rem;">Help Center</div>
+                            <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Browse FAQs, guides, and documentation</p>
+                        </div>
+
+                        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: all 0.25s ease;" onclick="openSupportChat()" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                            <div style="margin-bottom: 0.75rem; color: #a8d5ff;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
+                            <div style="color: #fff; font-weight: 600; margin-bottom: 0.5rem;">Live Chat</div>
+                            <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Chat with our support team (9 AM - 9 PM IST)</p>
+                        </div>
+
+                        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: all 0.25s ease;" onclick="window.open('mailto:support@trendifyo.com', '_blank')" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                            <div style="margin-bottom: 0.75rem; color: #a8d5ff;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
+                            <div style="color: #fff; font-weight: 600; margin-bottom: 0.5rem;">Email Support</div>
+                            <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">support@trendifyo.com (24-48h response)</p>
+                        </div>
+
+                        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: all 0.25s ease;" onclick="window.open('https://returns.trendifyo.com', '_blank')" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                            <div style="margin-bottom: 0.75rem; color: #a8d5ff;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg></div>
+                            <div style="color: #fff; font-weight: 600; margin-bottom: 0.5rem;">Returns Portal</div>
+                            <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Initiate returns and check refund status</p>
+                        </div>
+
+                        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: all 0.25s ease;" onclick="openSupportTicket()" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                            <div style="margin-bottom: 0.75rem; color: #a8d5ff;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><rect x="2" y="7" width="20" height="10" rx="2" ry="2"></rect><circle cx="12" cy="12" r="3"></circle></svg></div>
+                            <div style="color: #fff; font-weight: 600; margin-bottom: 0.5rem;">Support Ticket</div>
+                            <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Create a ticket for detailed support requests</p>
+                        </div>
+
+                        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: all 0.25s ease;" onclick="window.open('tel:1800-123-4567', '_blank')" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+                            <div style="margin-bottom: 0.75rem; color: #a8d5ff;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+                            <div style="color: #fff; font-weight: 600; margin-bottom: 0.5rem;">Phone Support</div>
+                            <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">1-800-TRENDIFYO (toll-free)</p>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #fff; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg> Quick Links</h3>
+                    <ul style="display: grid; gap: 0.75rem;">
+                        <li><a href="#" style="color: #a8d5ff; text-decoration: none;">Shipping & Delivery Information</a></li>
+                        <li><a href="#" style="color: #a8d5ff; text-decoration: none;">Return & Refund Policy</a></li>
+                        <li><a href="#" style="color: #a8d5ff; text-decoration: none;">Privacy Policy</a></li>
+                        <li><a href="#" style="color: #a8d5ff; text-decoration: none;">Terms & Conditions</a></li>
+                        <li><a href="#" style="color: #a8d5ff; text-decoration: none;">Warranty Information</a></li>
+                    </ul>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ========================
+         FOOTER
+    ======================== -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <a class="logo" href="index.html" style="margin-bottom: 1rem;">
+                    <img src="website/Trendifyo in vibrant blue and purple.ico" alt="Trendifyo logo" style="height: 46px; width: auto; display: block;">
+                    <span class="brand-name" style="font-size: 1.05rem; font-weight: 800; letter-spacing: 0.08em; background: linear-gradient(135deg, #7b5cf2 0%, #3d8bff 100%); -webkit-background-clip: text; color: transparent;">Trendifyo</span>
+                </a>
+                <p>Elevating every shopping experience with curated picks, bold style, and fast delivery.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <a href="#">Help Center</a>
+                <a href="#">Shipping</a>
+                <a href="#">Refunds</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="footer-column">
+                <h4>Account</h4>
+                <a href="#">My Account</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Trendifyo. Crafted for a modern shopping experience.</p>
+            <div class="footer-socials">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+    </footer>
+    <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><path d="M12 19V6" /><path d="M5 13l7-7 7 7" /></svg>
+    </button>
+
+    <!-- ========================
+         JAVASCRIPT
+    ======================== -->
+    <script>
+        // ---- Storage Keys & Default State ----
+        const STORAGE_KEYS = {
+            PROFILE: 'trendifyo_profile',
+            ADDRESSES: 'trendifyo_addresses',
+            PAYMENTS: 'trendifyo_payments',
+            WISHLIST: 'trendifyo_wishlist',
+            ORDERS: 'trendifyo_orders'
+        };
+
+        const defaultProfile = {
+            firstName: 'User', lastName: '', email: '', phone: '', dob: '', bio: '', avatar: '👤'
+        };
+
+        const defaultAddresses = [];
+        const defaultPayments = [];
+        const defaultOrders = [];
+        const defaultWishlist = [];
+
+        let profile = JSON.parse(localStorage.getItem(STORAGE_KEYS.PROFILE)) || defaultProfile;
+        let addresses = JSON.parse(localStorage.getItem(STORAGE_KEYS.ADDRESSES)) || defaultAddresses;
+        let payments = JSON.parse(localStorage.getItem(STORAGE_KEYS.PAYMENTS)) || defaultPayments;
+        let wishlist = JSON.parse(localStorage.getItem(STORAGE_KEYS.WISHLIST)) || defaultWishlist;
+        let orders = JSON.parse(localStorage.getItem(STORAGE_KEYS.ORDERS)) || defaultOrders;
+
+        function saveState(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+
+        // ---- Navigation ----
+        function switchSection(sectionId, event) {
+            if (event) event.preventDefault();
+
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show selected section
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.classList.add('active');
+                // Set active nav link
+                const link = document.querySelector(`.nav-link[data-section="${sectionId}"]`);
+                if(link) link.classList.add('active');
+                // Scroll to top of content
+                window.scrollTo({ top: document.querySelector('.account-main').offsetTop - 100, behavior: 'smooth' });
+            }
+        }
+
+        function showSection(sectionId) {
+            switchSection(sectionId);
+        }
+
+        // ---- Rendering ----
+        function renderDashboard() {
+            document.getElementById('user-name').textContent = profile.firstName || 'User';
+            
+            let totalSpent = 0;
+            orders.forEach(o => {
+                if (o.rawStatus !== 'cancelled') {
+                    const val = Number(String(o.total).replace(/[^0-9.-]+/g, ""));
+                    if (!isNaN(val)) totalSpent += val;
+                }
+            });
+            
+            const loyaltyPoints = Math.floor(totalSpent / 10);
+            let memberStatus = 'Bronze';
+            if (loyaltyPoints >= 1000) memberStatus = 'Platinum';
+            else if (loyaltyPoints >= 500) memberStatus = 'Gold';
+            else if (loyaltyPoints >= 100) memberStatus = 'Silver';
+            
+            const pointsEl = document.getElementById('loyaltyPointsValue');
+            if (pointsEl) pointsEl.textContent = loyaltyPoints;
+
+            const statsGrid = document.querySelector('.stats-grid');
+            if (statsGrid) {
+                statsGrid.innerHTML = `
+                    <div class="stat-card">
+                        <div class="stat-header">
+                                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
+                            <div class="stat-label">Total Orders</div>
+                        </div>
+                        <div class="stat-value">${orders.length}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+                            <div class="stat-label">Loyalty Points</div>
+                        </div>
+                        <div class="stat-value">${loyaltyPoints}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                            <div class="stat-label">Wishlist Items</div>
+                        </div>
+                        <div class="stat-value">${wishlist.length}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></div>
+                            <div class="stat-label">Member Status</div>
+                        </div>
+                        <div class="stat-value">${memberStatus}</div>
+                    </div>
+                `;
+            }
+
+            const recentOrdersContainer = document.querySelector('.recent-orders');
+            if (recentOrdersContainer) {
+                if (orders.length === 0) {
+                    recentOrdersContainer.innerHTML = '<div class="empty-state"><div class="empty-state-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px;"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div><h3>No Orders Yet</h3><p>You haven\'t placed any orders.</p></div>';
+                } else {
+                    recentOrdersContainer.innerHTML = orders.slice(0,3).map(order => `
+                        <div class="order-card">
+                            <div class="order-info">
+                                <div>
+                                    <div class="order-number">Order #${order.id}</div>
+                                    <div class="order-date">${order.date}</div>
+                                    <div style="margin-top: 0.6rem;"><span class="order-status status-${order.rawStatus}">${order.status}</span></div>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="order-total">${order.total}</div>
+                                <div class="order-actions">
+                                    <button class="btn-sm btn-sm-primary" onclick="viewOrder('${order.id}')">View</button>
+                                    <button class="btn-sm btn-sm-secondary" onclick="trackOrder('${order.id}')">Track</button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+        }
+
+        function renderOrders() {
+            const tbody = document.querySelector('.orders-table tbody');
+            if (!tbody) return;
+
+            const searchTerm = document.getElementById('searchOrder')?.value.toLowerCase() || '';
+            const statusFilter = document.getElementById('filterStatus')?.value || '';
+            
+            const filteredOrders = orders.filter(o => {
+                return o.id.toLowerCase().includes(searchTerm) && (statusFilter === '' || o.rawStatus === statusFilter);
+            });
+
+            if (filteredOrders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No orders found.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filteredOrders.map(order => `
+                <tr>
+                    <td>#${order.id}</td>
+                    <td>${order.date}</td>
+                    <td>${order.items}</td>
+                    <td><span class="order-status status-${order.rawStatus}">${order.status}</span></td>
+                    <td>${order.total}</td>
+                    <td>
+                        <button class="btn-sm btn-sm-primary" onclick="viewOrder('${order.id}')">View</button>
+                        ${order.rawStatus === 'pending' ? `<button class="btn-sm btn-sm-secondary" onclick="cancelOrder('${order.id}')" style="margin-left: 0.5rem;">Cancel</button>` : ''}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderProfile() {
+            document.getElementById('firstName').value = profile.firstName || '';
+            document.getElementById('lastName').value = profile.lastName || '';
+            document.getElementById('email').value = profile.email || '';
+            document.getElementById('phone').value = profile.phone || '';
+            document.getElementById('dob').value = profile.dob || '';
+            document.getElementById('bio').value = profile.bio || '';
+            
+            if (profile.avatar && profile.avatar.length > 2) {
+                document.getElementById('profilePhotoPreview').style.backgroundImage = `url('${profile.avatar}')`;
+                document.getElementById('profilePhotoPreview').style.backgroundSize = 'cover';
+                document.getElementById('profilePhotoPreview').textContent = '';
+            } else {
+                document.getElementById('profilePhotoPreview').style.backgroundImage = 'none';
+                document.getElementById('profilePhotoPreview').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px; color: rgba(255,255,255,0.4);"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>';
+            }
+        }
+
+        function renderAddresses() {
+            const container = document.querySelector('.addresses-grid');
+            if (!container) return;
+            
+            const addressCards = addresses.map(addr => `
+                <div class="address-card">
+                    <span class="address-label">${addr.label}</span>
+                    <div class="address-text">${addr.text.replace(/\n/g, '<br>')}</div>
+                    <div class="address-actions">
+                        <button class="btn-xs btn-xs-edit" onclick="editAddress(${addr.id})">Edit</button>
+                        <button class="btn-xs btn-xs-delete" onclick="deleteAddress(${addr.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = addressCards + `
+                <div class="address-card add-new" onclick="addNewAddress()">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">+</div>
+                        <div style="color: rgba(255,255,255,0.7); font-weight: 600;">Add New Address</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderPayments() {
+            const container = document.querySelector('.cards-grid');
+            if (!container) return;
+            
+            const cardsHtml = payments.map(card => `
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-network">💳 ${card.network}</div>
+                        <div class="card-number">•••• •••• •••• ${card.last4}</div>
+                        <div class="card-details">
+                            <div class="card-holder">
+                                <span class="card-holder-label">Cardholder</span>
+                                <span class="card-holder-name">${card.holder}</span>
+                            </div>
+                            <div class="card-expiry">
+                                <span class="card-expiry-label">Expires</span>
+                                <span class="card-expiry-date">${card.expiry}</span>
+                            </div>
+                        </div>
+                        <div class="card-actions" style="justify-content: space-between; align-items: center;">
+                            <label class="default-toggle">
+                                <input type="checkbox" class="checkbox" ${card.isDefault ? 'checked' : ''} onchange="setDefaultPayment(${card.id})">
+                                Default
+                            </label>
+                            <button class="btn-xs btn-xs-delete" onclick="deletePayment(${card.id})">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = cardsHtml + `
+                <div class="card" style="display: flex; align-items: center; justify-content: center; cursor: pointer;" onclick="addNewPayment()">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">+</div>
+                        <div style="color: rgba(255,255,255,0.7); font-weight: 600;">Add Payment Method</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderWishlist() {
+            const container = document.querySelector('.wishlist-grid');
+            if (!container) return;
+            
+            if (wishlist.length === 0) {
+                container.innerHTML = '<p>Your wishlist is empty.</p>';
+                return;
+            }
+
+            container.innerHTML = wishlist.map(item => `
+                <div class="wishlist-item">
+                    <div class="wishlist-img">${item.icon}</div>
+                    <div class="wishlist-content">
+                        <div class="wishlist-name">${item.name}</div>
+                        <div class="wishlist-price">${item.price}</div>
+                        <div class="wishlist-actions">
+                            <button onclick="addWishlistToCart('${item.id}')">Add to Cart</button>
+                            <button onclick="removeFromWishlist('${item.id}')">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderCartHistory() {
+            const container = document.getElementById('accountCartList');
+            if (!container) return;
+            const cart = JSON.parse(localStorage.getItem('trendifyoCart') || '[]');
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></div><h3>Your Cart is Empty</h3><p>Browse our shop to add items to your cart history.</p><a href="shop.html" class="btn btn-primary" style="margin-top: 1rem;">Go to Shop</a></div>';
+                return;
+            }
+            
+            container.innerHTML = cart.map(item => `
+                <div class="order-card" style="grid-template-columns: 70px 1fr auto;">
+                    <img src="${item.img || 'website/Trendifyo in vibrant blue and purple.ico'}" style="width: 70px; height: 70px; border-radius: 12px; object-fit: cover; background: rgba(255,255,255,0.05);" alt="${item.name}">
+                    <div class="order-info">
+                        <div>
+                            <div class="order-number">${item.name}</div>
+                            <div class="order-date" style="margin-top: 0.25rem;">Quantity: ${item.quantity}</div>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="order-total">${item.price}</div>
+                        <div class="order-actions" style="margin-top: 0.5rem;">
+                            <button class="btn-sm btn-sm-primary" onclick="window.location.href='cart.html'">Go to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ---- Profile Functions ----
+        async function previewPhoto(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = async function(e) {
+                    profile.avatar = e.target.result;
+                    saveState(STORAGE_KEYS.PROFILE, profile);
+                    renderProfile();
+                    renderDashboard();
+
+                    try {
+                        const { getAuth, updateProfile } = await import('https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js');
+                        const user = getAuth().currentUser;
+                        if (user) {
+                            await updateProfile(user, { photoURL: profile.avatar });
+                        }
+                    } catch (err) {
+                        console.error(err);
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        async function saveProfile(event) {
+            event.preventDefault();
+            profile.firstName = document.getElementById('firstName').value;
+            profile.lastName = document.getElementById('lastName').value;
+            profile.email = document.getElementById('email').value;
+            profile.phone = document.getElementById('phone').value;
+            profile.dob = document.getElementById('dob').value;
+            profile.bio = document.getElementById('bio').value;
+            
+            saveState(STORAGE_KEYS.PROFILE, profile);
+            renderDashboard();
+
+            try {
+                const { getAuth, updateProfile } = await import('https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js');
+                const user = getAuth().currentUser;
+                if (user) {
+                    await updateProfile(user, {
+                        displayName: `${profile.firstName} ${profile.lastName}`.trim()
+                    });
+                }
+            } catch (err) {
+                console.error("Firebase sync error:", err);
+            }
+
+            alert('✅ Profile updated successfully!');
+        }
+
+        // ---- Order Functions ----
+        function viewOrder(orderId) {
+            alert(`Viewing order: ${orderId}`);
+        }
+
+        function trackOrder(orderId) {
+            window.open(`https://tracking.trendifyo.com?order=${orderId}`, '_blank');
+        }
+
+        function reorderItems(orderId) {
+            alert(`Items from ${orderId} have been added to your cart!`);
+        }
+
+        function cancelOrder(orderId) {
+            if (confirm(`Cancel order ${orderId}?`)) {
+                orders = orders.map(o => {
+                    if (o.id === orderId) {
+                        return { ...o, status: 'Cancelled', rawStatus: 'cancelled' };
+                    }
+                    return o;
+                });
+                saveState(STORAGE_KEYS.ORDERS, orders);
+                renderOrders();
+                renderDashboard();
+                alert('Order cancelled successfully.');
+            }
+        }
+
+        // ---- Address Functions ----
+        function editAddress(id) {
+            const addr = addresses.find(a => a.id === id);
+            if (!addr) return;
+            
+            const label = prompt('Enter address label:', addr.label);
+            if (label !== null) addr.label = label;
+            
+            const text = prompt('Enter full address:', addr.text);
+            if (text !== null) addr.text = text;
+            
+            saveState(STORAGE_KEYS.ADDRESSES, addresses);
+            renderAddresses();
+        }
+
+        function deleteAddress(id) {
+            if (confirm('Delete this address?')) {
+                addresses = addresses.filter(a => a.id !== id);
+                saveState(STORAGE_KEYS.ADDRESSES, addresses);
+                renderAddresses();
+            }
+        }
+
+        function addNewAddress() {
+            const label = prompt('Enter address label (e.g. Home, Work):');
+            if (!label) return;
+            const text = prompt('Enter full address:');
+            if (!text) return;
+            
+            addresses.push({ id: Date.now(), label, text });
+            saveState(STORAGE_KEYS.ADDRESSES, addresses);
+            renderAddresses();
+        }
+
+        // ---- Payment Functions ----
+        function setDefaultPayment(id) {
+            payments = payments.map(p => ({ ...p, isDefault: p.id === id }));
+            saveState(STORAGE_KEYS.PAYMENTS, payments);
+            renderPayments();
+        }
+
+        function deletePayment(id) {
+            if (confirm('Delete this payment method?')) {
+                payments = payments.filter(p => p.id !== id);
+                saveState(STORAGE_KEYS.PAYMENTS, payments);
+                renderPayments();
+            }
+        }
+
+        function addNewCard() {
+            addNewPayment();
+        }
+        
+        function addNewPayment() {
+            const network = prompt('Enter card network (e.g. Visa, Mastercard):');
+            if (!network) return;
+            const last4 = prompt('Enter last 4 digits:');
+            if (!last4) return;
+            const holder = prompt('Enter cardholder name:');
+            if (!holder) return;
+            const expiry = prompt('Enter expiry (MM/YY):');
+            if (!expiry) return;
+            
+            payments.push({ id: Date.now(), network, last4, holder, expiry, isDefault: payments.length === 0 });
+            saveState(STORAGE_KEYS.PAYMENTS, payments);
+            renderPayments();
+        }
+
+        // ---- Wishlist Functions ----
+        function addWishlistToCart(itemId) {
+            const item = wishlist.find(i => i.id === itemId);
+            if(item) {
+                try {
+                    let cart = JSON.parse(localStorage.getItem('trendifyoCart') || '[]');
+                    const existingItem = cart.find(c => c.name === item.name);
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            id: Date.now(),
+                            name: item.name,
+                            price: item.price,
+                            originalPrice: item.price,
+                            img: item.img || 'website/Trendifyo in vibrant blue and purple.ico',
+                            quantity: 1
+                        });
+                    }
+                    localStorage.setItem('trendifyoCart', JSON.stringify(cart));
+                    
+                    const count = cart.reduce((sum, i) => sum + i.quantity, 0);
+                    const cartLink = document.querySelector('.cart-link');
+                    if (cartLink) cartLink.textContent = `Cart (${count})`;
+                    
+                    const profile = JSON.parse(localStorage.getItem('trendifyo_profile') || 'null');
+                    const isLogged = !!(profile && profile.email);
+                    const accountMsg = isLogged ? '' : ' Create an account or log in to sync your cart history.';
+                    alert(`${item.name} added to cart!${accountMsg}`);
+                    renderCartHistory();
+                } catch(e) {
+                    console.error(e);
+                }
+            }
+        }
+
+        function removeFromWishlist(itemId) {
+            wishlist = wishlist.filter(i => i.id !== itemId);
+            saveState(STORAGE_KEYS.WISHLIST, wishlist);
+            renderWishlist();
+            renderDashboard(); 
+        }
+
+        // ---- Rewards Functions ----
+        function copyReferralCode() {
+            const code = document.querySelector('.referral-input').value;
+            navigator.clipboard.writeText(code);
+            alert('Referral code copied to clipboard! 📋');
+        }
+
+        function redeemReward(rewardId) {
+            if (confirm('Redeem this reward?')) {
+                alert('✅ Reward redeemed successfully!');
+            }
+        }
+
+        // ---- Support Functions ----
+        function openSupportChat() {
+            alert('Opening live chat widget...');
+        }
+
+        function openSupportTicket() {
+            alert('Open support ticket form');
+        }
+
+        // ---- Init ----
+        document.addEventListener('DOMContentLoaded', async () => {
+            renderDashboard();
+            renderOrders();
+            renderProfile();
+            renderAddresses();
+            renderPayments();
+            renderWishlist();
+            renderCartHistory();
+            
+            document.getElementById('searchOrder')?.addEventListener('input', renderOrders);
+            document.getElementById('filterStatus')?.addEventListener('change', renderOrders);
+            document.getElementById('filterDate')?.addEventListener('change', renderOrders);
+
+            // Update cart count
+            try {
+                const cart = JSON.parse(localStorage.getItem('trendifyoCart') || '[]');
+                const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+                const cartLink = document.querySelector('.cart-link');
+                if (cartLink) cartLink.textContent = `Cart (${count})`;
+            } catch(e) {}
+
+            // Sync with Firebase
+            try {
+                const { getAuth, onAuthStateChanged } = await import('https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js');
+                const auth = getAuth();
+                onAuthStateChanged(auth, user => {
+                    if (user) {
+                        const nameParts = (user.displayName || '').split(' ');
+                        profile.firstName = nameParts[0] || 'User';
+                        profile.lastName = nameParts.slice(1).join(' ') || '';
+                        profile.email = user.email || '';
+                        if (user.photoURL) profile.avatar = user.photoURL;
+                        
+                        saveState(STORAGE_KEYS.PROFILE, profile);
+                        renderProfile();
+                        renderDashboard();
+                    }
+                });
+            } catch (e) {
+                console.error("Firebase init error:", e);
+            }
+        });
+    </script>
+    <script type="module" src="firebase-auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('premium-particles');
+            if (!container) return;
+            const colors = ['rgba(124, 92, 255, 0.8)', 'rgba(87, 188, 255, 0.8)', 'rgba(255, 255, 255, 0.6)'];
+            for (let i = 0; i < 45; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 4 + 1.5;
+                particle.style.cssText = `width: ${size}px; height: ${size}px; left: ${Math.random() * 100}%; animation-duration: ${Math.random() * 15 + 15}s; animation-delay: -${Math.random() * 20}s;`;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 ${size * 3}px ${color}`;
+                particle.style.setProperty('--drift', (Math.random() * 120 - 60) + 'px');
+                particle.style.setProperty('--max-opacity', Math.random() * 0.5 + 0.3);
+                container.appendChild(particle);
+            }
+            
+            const canvas = document.getElementById('hero-network');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width, height;
+                let particles = [];
+                let roundParticles = [];
+                function resize() {
+                    width = canvas.width = canvas.offsetWidth;
+                    height = canvas.height = canvas.offsetHeight;
+                }
+                window.addEventListener('resize', resize);
+                resize();
+                class Particle {
+                    constructor() {
+                        this.x = Math.random() * width;
+                        this.y = Math.random() * height;
+                        this.vx = (Math.random() - 0.5) * 0.8;
+                        this.vy = (Math.random() - 0.5) * 0.8;
+                        this.radius = Math.random() * 1.5 + 1;
+                    }
+                    update() {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        if (this.x < 0 || this.x > width) this.vx *= -1;
+                        if (this.y < 0 || this.y > height) this.vy *= -1;
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(124, 92, 255, 0.9)';
+                        ctx.fill();
+                    }
+                }
+                class RoundParticle {
+                    constructor() {
+                        this.x = Math.random() * width;
+                        this.y = Math.random() * height;
+                        this.vx = (Math.random() - 0.5) * 0.3;
+                        this.vy = (Math.random() - 0.5) * 0.3;
+                        this.radius = Math.random() * 4 + 2;
+                        this.color = Math.random() > 0.5 ? 'rgba(124, 92, 255, 0.4)' : 'rgba(87, 188, 255, 0.4)';
+                    }
+                    update() {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        if (this.x < 0 || this.x > width) this.vx *= -1;
+                        if (this.y < 0 || this.y > height) this.vy *= -1;
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.shadowBlur = 10;
+                        ctx.shadowColor = this.color;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    }
+                }
+                for (let i = 0; i < 70; i++) {
+                    particles.push(new Particle());
+                }
+                for (let i = 0; i < 25; i++) {
+                    roundParticles.push(new RoundParticle());
+                }
+                function animate() {
+                    ctx.clearRect(0, 0, width, height);
+                    for (let i = 0; i < roundParticles.length; i++) {
+                        roundParticles[i].update();
+                        roundParticles[i].draw();
+                    }
+                    for (let i = 0; i < particles.length; i++) {
+                        particles[i].update();
+                        particles[i].draw();
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 130) {
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.strokeStyle = `rgba(87, 188, 255, ${(1 - dist / 130) * 0.5})`;
+                                ctx.lineWidth = 1;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    requestAnimationFrame(animate);
+                }
+                animate();
+            }
+            
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        if (scrollTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) scrollTopBtn.classList.add('visible');
+                else scrollTopBtn.classList.remove('visible');
+            });
+            scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
+        });
+    </script>
+
+    <script type="module">
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js';
+        function updateAuthHeader(isLoggedIn) {
+            const authLink = document.querySelector('.nav-links .cta');
+            if (authLink) {
+                if (isLoggedIn) {
+                    if (window.location.pathname.includes('my-account.html')) {
+                        authLink.textContent = 'Logout';
+                        authLink.href = 'javascript:void(0)';
+                        authLink.onclick = (e) => {
+                            e.preventDefault();
+                            try {
+                                signOut(getAuth()).then(() => {
+                                    localStorage.removeItem('trendifyo_profile');
+                                    window.location.href = 'login.html';
+                                });
+                            } catch (err) {
+                                localStorage.removeItem('trendifyo_profile');
+                                window.location.href = 'login.html';
+                            }
+                        };
+                    } else {
+                        authLink.textContent = 'My Account';
+                        authLink.href = 'my-account.html';
+                        authLink.onclick = null;
+                    }
+                } else {
+                    authLink.textContent = 'Login';
+                    authLink.href = '/trendifyo/login.html';
+                    authLink.onclick = null;
+                }
+            }
+        }
+        try { onAuthStateChanged(getAuth(), user => { updateAuthHeader(!!user); }); } catch (error) { const profile = JSON.parse(localStorage.getItem('trendifyo_profile') || 'null'); updateAuthHeader(!!(profile && profile.email)); }
+    </script>
+</body>
+</html>

@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Policy | Trendifyo</title>
+    <link rel="icon" href="website/Trendifyo in vibrant blue and purple.ico" type="image/x-icon">
+    <style>
+        /* Common styles from product-detail.html */
+        :root {
+            color-scheme: dark;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #060c1c;
+            color: #eef3ff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #f0f4ff;
+            background: linear-gradient(180deg, rgba(8, 15, 40, 0.92), rgba(12, 20, 52, 0.82)),
+                        url('./Animated Login Form Using HTML and CSS/Animated Login Form Using HTML and CSS/image.png') no-repeat center/cover;
+            background-color: #060814;
+            background-image:
+                radial-gradient(circle at 0% 0%, rgba(124, 92, 255, 0.15), transparent 40%),
+                radial-gradient(circle at 100% 20%, rgba(87, 188, 255, 0.12), transparent 40%),
+                radial-gradient(circle at 50% 100%, rgba(124, 92, 255, 0.08), transparent 50%);
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+            transition: opacity 0.25s ease;
+        }
+        .search-icon-btn { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; border-radius: 50%; color: #fff; transition: background 0.2s ease; }
+        .search-icon-btn:hover { background: rgba(255,255,255,0.1); }
+        .search-overlay { position: fixed; inset: 0; background: rgba(6, 8, 20, 0.85); backdrop-filter: blur(12px); z-index: 2000; display: none; align-items: flex-start; justify-content: center; padding: 10vh 1rem 1rem; animation: fadeInOverlay 0.3s ease; }
+        .search-overlay.active { display: flex; }
+        @keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
+        .search-overlay-content { position: relative; width: 100%; max-width: 640px; }
+        .search-overlay-close { position: absolute; top: -50px; right: -10px; background: none; border: none; color: rgba(255,255,255,0.8); font-size: 2.8rem; cursor: pointer; transition: transform 0.2s ease; }
+        .search-overlay-close:hover { transform: scale(1.1); }
+        .search-overlay-form { display: flex; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; overflow: hidden; background: rgba(255,255,255,0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+        .search-overlay-form input { flex: 1; border: none; background: transparent; color: #fff; padding: 1rem 1.2rem; font-size: 1.1rem; outline: none; }
+        .search-overlay-form button { padding: 0 1.5rem; border: none; background: #7b5cf2; color: #fff; cursor: pointer; transition: background 0.2s ease; }
+        .search-overlay-form button:hover { background: #6641e5; }
+        .search-overlay-results { margin-top: 1rem; max-height: 60vh; overflow-y: auto; background: rgba(15, 22, 47, 0.95); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); display: flex; flex-direction: column; }
+        .search-overlay-results::-webkit-scrollbar { width: 6px; }
+        .search-overlay-results::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; } .search-placeholder { color: rgba(255,255,255,0.6); text-align: center; padding: 2rem; margin: 0; }
+        .search-result-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); text-decoration: none; color: #fff; transition: background 0.2s ease; }
+        .search-result-item:last-child { border-bottom: none; }
+        .search-result-item:hover { background: rgba(255,255,255,0.08); }
+        .search-result-item img { width: 48px; height: 48px; object-fit: cover; border-radius: 8px; background: rgba(255,255,255,0.1); }
+        .result-info { display: flex; flex-direction: column; gap: 4px; overflow: hidden; }
+        .result-name { font-size: 0.95rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .result-meta { font-size: 0.85rem; color: #57bcff; display: flex; align-items: center; gap: 8px; }
+        .result-cat { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+        .view-all-results { display: block; padding: 12px; text-align: center; background: rgba(124, 92, 255, 0.1); color: #b6d7ff; text-decoration: none; font-size: 0.9rem; font-weight: 600; border-top: 1px solid rgba(255,255,255,0.1); transition: background 0.2s ease; }
+        .view-all-results:hover { background: rgba(124, 92, 255, 0.2); }
+        a { color: inherit; text-decoration: none; }
+        .site-header { background: transparent; color: white; padding: 0.6rem 0; height: 72px; min-height: 72px; position: relative; top: 0; left: 0; z-index: 1000; box-shadow: none; border-bottom: none; width: 100%; }
+        header.site-header .container { max-width: 100%; }
+        .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 1rem; cursor: pointer; padding: 0.15rem 0; background: transparent; text-decoration: none; color: #fff; }
+        .logo img { height: 46px; width: auto; display: block; object-fit: contain; background: transparent; }
+        .logo-image { display: flex; align-items: center; }
+        .logo-text { display: flex; flex-direction: column; gap: 0.08rem; min-width: 120px; }
+        .brand-name { font-size: 1.05rem; font-weight: 800; letter-spacing: 0.08em; background: linear-gradient(135deg, #7b5cf2 0%, #3d8bff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; animation: brandPulse 4s ease-in-out infinite; }
+        .brand-tagline { font-size: 0.74rem; color: rgba(255,255,255,0.75); letter-spacing: 0.18em; text-transform: uppercase; }
+        @keyframes brandPulse { 0%, 100% { opacity: 0.95; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-2px); } }
+        .nav-links { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin: 0; padding: 0; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.88); text-decoration: none; padding: 0.8rem 1rem; border-radius: 999px; transition: all 0.25s ease; font-size: 0.95rem; }
+        .nav-links a:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+        .nav-links .cta { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; box-shadow: 0 14px 28px rgba(102,126,234,0.24); }
+        .page-wrap { max-width: 1180px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+        .hero-network {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.85;
+        }
+        .breadcrumb { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; color: rgba(238,243,255,0.72); font-size: 0.95rem; margin-bottom: 1rem; position: relative; z-index: 1; }
+        .breadcrumb a { color: rgba(255,255,255,0.88); }
+        .breadcrumb .sep { margin: 0 0.45rem; }
+        .page-content {
+            background: rgba(15, 22, 47, 0.95);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 32px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        .page-content h1 {
+            font-size: clamp(2rem, 3vw, 3rem);
+            margin-bottom: 1.5rem;
+            color: #f7fbff;
+        }
+        .page-content h2 {
+            font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #f7fbff;
+        }
+        .page-content h3 {
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: #f7fbff;
+        }
+        .page-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: rgba(238,243,255,0.8);
+        }
+        .page-content ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: rgba(238,243,255,0.8);
+        }
+        .page-content ol {
+            list-style: decimal;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: rgba(238,243,255,0.8);
+        }
+        .page-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        .page-content a {
+            color: #57bcff;
+            text-decoration: underline;
+        }
+        .page-content strong {
+            color: #fff;
+        }
+        .cart-panel {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: stretch;
+            justify-content: flex-end;
+            z-index: 1200;
+        }
+
+        .cart-panel.active {
+            display: flex;
+        }
+
+        .cart-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 18, 45, 0.72);
+            backdrop-filter: blur(3px);
+        }
+
+        .cart-drawer {
+            position: relative;
+            width: min(440px, 100%);
+            max-width: 440px;
+            background: linear-gradient(135deg, #3d8bff 0%, #7b5cf2 100%);
+            box-shadow: -14px 0 40px rgba(29, 40, 82, 0.24);
+            padding: 1.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            overflow: hidden;
+            transform: translateX(100%);
+            animation: slideInCart 0.22s ease forwards;
+            color: #f8fbff;
+        }
+
+        .cart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .cart-header h2 {
+            margin: 0;
+            font-size: 1.3rem;
+            letter-spacing: 0.02em;
+        }
+
+        .cart-close {
+            border: none;
+            background: rgba(255,255,255,0.16);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            color: #fff;
+            transition: background 0.2s ease;
+        }
+
+        .cart-close:hover {
+            background: rgba(255,255,255,0.24);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            display: grid;
+            gap: 1rem;
+            padding-right: 0.5rem;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 72px 1fr;
+            gap: 0.85rem;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 18px;
+            color: #f8fbff;
+            box-shadow: 0 18px 35px rgba(29, 40, 82, 0.14);
+            backdrop-filter: blur(3px);
+        }
+
+        .cart-item img {
+            width: 72px;
+            height: 72px;
+            object-fit: cover;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.18);
+        }
+
+        .cart-item-details {
+            display: grid;
+            gap: 0.4rem;
+        }
+
+        .cart-item-details strong {
+            font-size: 1rem;
+            line-height: 1.3;
+            color: #fff;
+        }
+
+        .cart-prices {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            color: rgba(255,255,255,0.88);
+            font-size: 0.95rem;
+        }
+
+        .cart-sale {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            max-width: fit-content;
+            padding: 0.26rem 0.65rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #ffd86e 0%, #ff9a56 100%);
+            color: #1f1a1d;
+            font-weight: 800;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16);
+        }
+
+        .cart-original {
+            opacity: 0.72;
+            text-decoration: line-through;
+            font-size: 0.88rem;
+        }
+
+        .cart-desc {
+            margin: 0;
+            color: rgba(255,255,255,0.78);
+            font-size: 0.92rem;
+            line-height: 1.4;
+            max-height: 1.5em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .cart-actions-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .cart-quantity {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.4rem;
+        }
+
+        .cart-quantity button {
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.16);
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .cart-quantity button:hover {
+            background: rgba(255,255,255,0.26);
+        }
+
+        .cart-remove {
+            border: none;
+            background: rgba(255,255,255,0.14);
+            color: #fff;
+            padding: 0.6rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .cart-remove:hover {
+            background: rgba(255,255,255,0.24);
+            transform: translateY(-1px);
+        }
+
+        .cart-quantity span {
+            min-width: 30px;
+            text-align: center;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .cart-total {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #fff;
+        }
+
+        .cart-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-checkout {
+            flex: 1;
+            min-width: 140px;
+            padding: 0.95rem 1.2rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #7b5cf2 0%, #3d8bff 100%);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 16px 28px rgba(59, 102, 255, 0.2);
+        }
+
+        .btn-checkout:hover {
+            opacity: 0.97;
+        }
+
+        .cart-empty {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.98rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .empty-cart-panel {
+            display: grid;
+            gap: 1rem;
+            padding: 0.6rem 0 0;
+        }
+        @keyframes slideInCart { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        .spec-table { width: 100%; border-collapse: collapse; margin-top: 1.7rem; }
+        .spec-table td { padding: 0.95rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .spec-table td:first-child { color: rgba(255,255,255,0.72); width: 45%; }
+        .no-product { padding: 3.5rem 2rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 28px; box-shadow: 0 28px 80px rgba(0,0,0,0.18); text-align: center; }
+        .no-product h2 { margin-bottom: 1rem; font-size: 2rem; }
+        .no-product p { color: rgba(238,243,255,0.78); margin-bottom: 1.5rem; }
+        .wishlist-float-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+            font-size: 0.95rem;
+            filter: grayscale(100%) opacity(0.6);
+        }
+        .wishlist-float-btn:hover { transform: scale(1.1); filter: grayscale(0%) opacity(1); background: rgba(0,0,0,0.6); }
+        .wishlist-float-btn.active { filter: grayscale(0%) opacity(1); background: rgba(255,255,255,0.2); border-color: rgba(255,107,107,0.5); }
+        @media (max-width: 960px) { .detail-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 720px) { nav { flex-direction: column; align-items: flex-start; gap: 0.8rem; } .detail-header { flex-direction: column; align-items: flex-start; } .breadcrumb { justify-content: flex-start; } }
+        .premium-particles { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .particle { position: absolute; border-radius: 50%; animation: floatUp infinite linear; }
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) translateX(0) scale(0.5); opacity: 0; }
+            20%, 80% { opacity: var(--max-opacity, 0.8); }
+            100% { transform: translateY(-10vh) translateX(var(--drift)) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="premium-particles" id="premium-particles"></div>
+    <header class="site-header">
+        <nav class="container">
+            <a class="logo" href="index.html">
+                <div class="logo-image">
+                    <img src="website/Trendifyo in vibrant blue and purple.ico" alt="Trendifyo logo">
+                </div>
+                <div class="logo-text">
+                    <span class="brand-name">Trendifyo</span>
+                    <span class="brand-tagline">Curated trend delivery</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li>
+                    <a href="javascript:void(0)" class="search-icon-btn" onclick="openSearchOverlay()" aria-label="Open search">
+                        <svg viewBox="0 0 24 24" width="25" height="25" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </a>
+                </li>
+                <li><a class="cart-link" href="javascript:void(0)" onclick="toggleCart(event); return false;">Cart (0)</a></li>
+                <li><a class="cta" href="/trendifyo/login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-overlay-content">
+            <button class="search-overlay-close" onclick="closeSearchOverlay()" aria-label="Close search">×</button>
+            <form id="search-overlay-form" class="search-overlay-form" onsubmit="handleOverlaySearch(event)">
+                <input type="search" id="overlay-search-input" placeholder="Search for products, brands and more..." autocomplete="off">
+                <button type="submit" class="search-submit-btn" aria-label="Search">
+                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </form>
+            <div id="search-overlay-results" class="search-overlay-results">
+                <p class="search-placeholder">Start typing to see product suggestions.</p>
+            </div>
+        </div>
+    </div>
+    <canvas id="hero-network" class="hero-network"></canvas>
+    <div id="cart-panel" class="cart-panel" style="z-index: 1200;">
+        <div class="cart-backdrop" onclick="toggleCart(false)"></div>
+        <div class="cart-drawer">
+            <div class="cart-header">
+                <h2>Your Cart</h2>
+                <button class="cart-close" onclick="toggleCart(false)">×</button>
+            </div>
+            <div id="cart-items" class="cart-items">
+                <p class="cart-empty">Your cart is empty.</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">Total: ₹0</div>
+                <button class="btn-primary" onclick="checkoutCart()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="page-wrap" style="position: relative; z-index: 2;">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="sep">›</span>
+            <span>Shipping Policy</span>
+        </div>
+
+        <div class="page-content">
+            <h1>Shipping Policy</h1>
+            <p>At Trendifyo, we are committed to delivering your products efficiently and reliably. Please review our shipping policy below for details on delivery times, costs, and procedures.</p>
+
+            <h2>1. Shipping Zones and Carriers</h2>
+            <p>We currently ship to all major cities and towns across India. For international shipping inquiries, please contact our support team. We partner with reputable logistics providers such as Delhivery, Blue Dart, and XpressBees to ensure your orders arrive safely.</p>
+
+            <h2>2. Processing Time</h2>
+            <ul>
+                <li>All orders are processed within <strong>1-2 business days</strong> (excluding weekends and holidays) after receiving your order confirmation email.</li>
+                <li>You will receive another notification when your order has shipped.</li>
+                <li>During peak seasons or promotional periods, processing times may be slightly longer.</li>
+            </ul>
+
+            <h2>3. Shipping Rates and Delivery Estimates</h2>
+            <p>Shipping charges for your order will be calculated and displayed at checkout. We offer the following shipping options:</p>
+            <ul>
+                <li><strong>Standard Shipping:</strong>
+                    <ul>
+                        <li>Delivery Time: 5-7 business days</li>
+                        <li>Cost: ₹99 (Free for orders above ₹999)</li>
+                    </ul>
+                </li>
+                <li><strong>Express Shipping:</strong>
+                    <ul>
+                        <li>Delivery Time: 2-3 business days</li>
+                        <li>Cost: ₹199</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>Please note that delivery estimates are calculated from the date of shipment, not the date of order placement.</p>
+
+            <h2>4. Order Tracking</h2>
+            <p>Once your order has shipped, you will receive an email notification from us which will include a tracking number you can use to check its status. Please allow 24-48 hours for the tracking information to become available.</p>
+            <p>You can track your order directly on our <a href="track-order.html">Track Order</a> page.</p>
+
+            <h2>5. Shipping Address Changes</h2>
+            <p>If you need to change your shipping address after placing an order, please contact us immediately at <a href="mailto:support@trendifyo.com">support@trendifyo.com</a>. We will do our best to accommodate your request, but we cannot guarantee changes once the order has been processed or shipped.</p>
+
+            <h2>6. Damaged or Lost Packages</h2>
+            <p>Trendifyo is not liable for any products damaged or lost during shipping. If you received your order damaged, please contact the shipment carrier to file a claim. Please save all packaging materials and damaged goods before filing a claim.</p>
+            <p>If your package is lost in transit, please contact us after the estimated delivery window has passed, and we will assist you in contacting the carrier.</p>
+
+            <h2>7. Contact Information</h2>
+            <p>For any questions about our shipping policy, please contact us:</p>
+            <div class="contact-info">
+                <strong>Email:</strong> <a href="mailto:support@trendifyo.com">support@trendifyo.com</a><br>
+                <strong>Phone:</strong> +91 98765 43210
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const products = {}; // Empty products object as it's not needed on this page
+        let detailCart = [];
+        let cartCount = 0;
+        const CART_STORAGE_KEY = 'trendifyoCart';
+
+        function loadSavedCart() {
+            try {
+                return JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '[]');
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function updateCartCount() {
+            cartCount = detailCart.reduce((sum, item) => sum + item.quantity, 0);
+            const cartLink = document.querySelector('.cart-link');
+            if (cartLink) {
+                cartLink.textContent = `Cart (${cartCount})`;
+            }
+        }
+
+        function toggleCart(event, open) {
+            if (event && event.preventDefault) {
+                event.preventDefault();
+            }
+            const panel = document.getElementById('cart-panel');
+            if (!panel) return;
+
+            const shouldOpen = typeof open === 'boolean' ? open : !panel.classList.contains('active');
+            panel.classList.toggle('active', shouldOpen);
+            if (shouldOpen) {
+                renderDetailCart();
+            }
+        }
+
+        function renderDetailCart() {
+            const cartItemsEl = document.getElementById('cart-items');
+            const cartTotalEl = document.querySelector('.cart-total');
+            if (!cartItemsEl || !cartTotalEl) return;
+            if (detailCart.length === 0) {
+                cartItemsEl.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+                cartTotalEl.textContent = 'Total: ₹0';
+                return;
+            }
+            let total = 0;
+            cartItemsEl.innerHTML = detailCart.map(item => {
+                const price = Number(item.price.replace(/[^\d]/g, '')) || 0;
+                total += price * item.quantity;
+                return `
+                    <div class="cart-item">
+                        <img src="${item.img}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <strong>${item.name}</strong>
+                            <p class="cart-desc">${item.desc}</p>
+                            <div class="cart-prices">
+                                <span class="cart-sale">${item.price}</span>
+                                <span class="cart-original">${item.originalPrice}</span>
+                            </div>
+                            <div class="cart-actions-row">
+                                <div class="cart-quantity">
+                                    <button type="button" onclick="adjustDetailCartQuantity(${item.id}, -1)">−</button>
+                                    <span>${item.quantity}</span>
+                                    <button type="button" onclick="adjustDetailCartQuantity(${item.id}, 1)">+</button>
+                                </div>
+                                <button type="button" class="cart-remove" onclick="removeDetailCartItem(${item.id})">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            cartTotalEl.textContent = `Total: ₹${total.toLocaleString()}`;
+        }
+
+        function checkoutCart() {
+            if (detailCart.length === 0) {
+                showToast('Your cart is empty.');
+                return;
+            }
+            window.location.href = 'checkout.html';
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.innerHTML = message;
+            toast.style.position = 'fixed';
+            toast.style.right = '20px';
+            toast.style.bottom = '20px';
+            toast.style.padding = '1rem 1.25rem';
+            toast.style.borderRadius = '16px';
+            toast.style.background = 'rgba(255,255,255,0.1)';
+            toast.style.color = '#fff';
+            toast.style.backdropFilter = 'blur(10px)';
+            toast.style.boxShadow = '0 20px 50px rgba(0,0,0,0.25)';
+            toast.style.zIndex = '999';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        function openSearchOverlay() {
+            const overlay = document.getElementById('search-overlay');
+            const input = document.getElementById('overlay-search-input');
+            if (overlay) {
+                overlay.classList.add('active');
+                setTimeout(() => { if (input) input.focus(); }, 100);
+            }
+        }
+
+        function closeSearchOverlay() {
+            const overlay = document.getElementById('search-overlay');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        const searchMockProducts = { /* Minimal mock for search overlay */
+            1: { name: "Inflatable Premium Air Bed", category: "Home", price: "₹3499", img: "website/inflatable-air-bed-portable-single-air-mattress-with-built-in-pump-500x500.webp" },
+            2: { name: "RC Stealth Fighter Drone", category: "Electronics", price: "₹999", img: "website/61AvRJyA3TL._SL1500_.jpg" },
+            3: { name: "Miniature Portable Gas Stove", category: "Camping", price: "₹499", img: "website/51ANeuxwMpL.jpg" },
+            4: { name: "Rechargeable Mist Cooler", category: "Home", price: "₹1499", img: "website/SKU-8608_0-1773158392194.webp" },
+            5: { name: "Portable USB Air Fan", category: "Electronics", price: "₹1299", img: "website/SKU-6089_0-1741495108631.webp" },
+        };
+
+        function handleOverlaySearch(event) {
+            event.preventDefault();
+            const query = document.getElementById('overlay-search-input').value.trim();
+            if (query) { window.location.href = `shop.html?q=${encodeURIComponent(query)}`; }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            detailCart = loadSavedCart();
+            updateCartCount();
+
+            const searchInput = document.getElementById('overlay-search-input');
+            const dropdown = document.getElementById('search-overlay-results');
+            if (searchInput && dropdown) {
+                searchInput.addEventListener('input', (event) => {
+                    const query = event.target.value.toLowerCase().trim();
+                    if (query.length < 1) { dropdown.innerHTML = '<p class="search-placeholder">Start typing to see product suggestions.</p>'; return; }
+                    const sourceProducts = (typeof products !== 'undefined' && Object.keys(products).length > 0) ? products : searchMockProducts;
+                    const items = Array.isArray(sourceProducts) ? sourceProducts : Object.entries(sourceProducts).map(([id, p]) => ({id, ...p}));
+                    const filtered = items.filter(p => p.name.toLowerCase().includes(query) || (p.category && p.category.toLowerCase().includes(query)));
+                    if (filtered.length > 0) {
+                        let html = filtered.slice(0, 5).map(p => `
+                            <a href="product-detail.html?id=${p.id}" class="search-result-item"><img src="${p.img}" alt="${p.name}"><div class="result-info"><div class="result-name">${p.name}</div><div class="result-meta"><span>${typeof p.price === 'number' ? '₹'+p.price : p.price}</span> <span class="result-cat">• ${p.category}</span></div></div></a>
+                        `).join('');
+                        if (filtered.length > 5) html += `<a href="shop.html?q=${encodeURIComponent(query)}" class="view-all-results">View all ${filtered.length} results &rarr;</a>`;
+                        dropdown.innerHTML = html;
+                    } else {
+                        dropdown.innerHTML = '<p class="search-placeholder">No products found for "'+query+'"</p>';
+                    }
+                });
+            }
+        });
+    </script>
+    <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V6" />
+            <path d="M5 13l7-7 7 7" />
+        </svg>
+    </button>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('premium-particles');
+            if (container) {
+                const colors = ['rgba(124, 92, 255, 0.8)', 'rgba(87, 188, 255, 0.8)', 'rgba(255, 255, 255, 0.6)'];
+                for (let i = 0; i < 45; i++) { // Generate 45 particles
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    const size = Math.random() * 4 + 1.5;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.cssText = `
+                        width: ${size}px; height: ${size}px;
+                        left: ${Math.random() * 100}%;
+                        animation-duration: ${Math.random() * 15 + 15}s;
+                        animation-delay: -${Math.random() * 20}s;
+                    `;
+                    particle.style.boxShadow = `0 0 ${size * 3}px ${color}`;
+                    particle.style.setProperty('--drift', (Math.random() * 120 - 60) + 'px');
+                    particle.style.setProperty('--max-opacity', Math.random() * 0.5 + 0.3);
+                    container.appendChild(particle);
+                }
+            }
+
+            const canvas = document.getElementById('hero-network');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width, height;
+                let particles = [];
+                let roundParticles = [];
+                function resize() {
+                    width = canvas.width = canvas.offsetWidth;
+                    height = canvas.height = canvas.offsetHeight;
+                }
+                window.addEventListener('resize', resize);
+                resize();
+                class Particle {
+                    constructor() {
+                        this.x = Math.random() * width;
+                        this.y = Math.random() * height;
+                        this.vx = (Math.random() - 0.5) * 0.8;
+                        this.vy = (Math.random() - 0.5) * 0.8;
+                        this.radius = Math.random() * 1.5 + 1;
+                    }
+                    update() {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        if (this.x < 0 || this.x > width) this.vx *= -1;
+                        if (this.y < 0 || this.y > height) this.vy *= -1;
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(124, 92, 255, 0.9)';
+                        ctx.fill();
+                    }
+                }
+                class RoundParticle {
+                    constructor() {
+                        this.x = Math.random() * width;
+                        this.y = Math.random() * height;
+                        this.vx = (Math.random() - 0.5) * 0.3;
+                        this.vy = (Math.random() - 0.5) * 0.3;
+                        this.radius = Math.random() * 4 + 2;
+                        this.color = Math.random() > 0.5 ? 'rgba(124, 92, 255, 0.4)' : 'rgba(87, 188, 255, 0.4)';
+                    }
+                    update() {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        if (this.x < 0 || this.x > width) this.vx *= -1;
+                        if (this.y < 0 || this.y > height) this.vy *= -1;
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.shadowBlur = 10;
+                        ctx.shadowColor = this.color;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    }
+                }
+                for (let i = 0; i < 70; i++) {
+                    particles.push(new Particle());
+                }
+                for (let i = 0; i < 25; i++) {
+                    roundParticles.push(new RoundParticle());
+                }
+                function animate() {
+                    ctx.clearRect(0, 0, width, height);
+                    for (let i = 0; i < roundParticles.length; i++) {
+                        roundParticles[i].update();
+                        roundParticles[i].draw();
+                    }
+                    for (let i = 0; i < particles.length; i++) {
+                        particles[i].update();
+                        particles[i].draw();
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 130) {
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.strokeStyle = `rgba(87, 188, 255, ${(1 - dist / 130) * 0.5})`;
+                                ctx.lineWidth = 1;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    requestAnimationFrame(animate);
+                }
+                animate();
+            }
+        });
+    </script>
+    <script type="module">
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js';
+        function updateAuthHeader(isLoggedIn) {
+            const authLink = document.querySelector('.nav-links .cta');
+            if (authLink) {
+                if (isLoggedIn) {
+                    if (window.location.pathname.includes('my-account.html')) {
+                        authLink.textContent = 'Logout';
+                        authLink.href = 'javascript:void(0)';
+                        authLink.onclick = (e) => {
+                            e.preventDefault();
+                            try {
+                                signOut(getAuth()).then(() => {
+                                    localStorage.removeItem('trendifyo_profile');
+                                    window.location.href = 'login.html';
+                                });
+                            } catch (err) {
+                                localStorage.removeItem('trendifyo_profile');
+                                window.location.href = 'login.html';
+                            }
+                        };
+                    } else {
+                        authLink.textContent = 'My Account';
+                        authLink.href = 'my-account.html';
+                        authLink.onclick = null;
+                    }
+                } else {
+                    authLink.textContent = 'Login';
+                    authLink.href = '/trendifyo/login.html';
+                    authLink.onclick = null;
+                }
+            }
+        }
+        try { onAuthStateChanged(getAuth(), user => { updateAuthHeader(!!user); }); } catch (error) { const profile = JSON.parse(localStorage.getItem('trendifyo_profile') || 'null'); updateAuthHeader(!!(profile && profile.email)); }
+    </script>
+</body>
+</html>

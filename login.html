@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Trendifyo</title>
+    <link rel="icon" href="website/Trendifyo in vibrant blue and purple.ico" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0b1420;
+            background: linear-gradient(180deg, rgba(8, 15, 40, 0.92), rgba(12, 20, 52, 0.82)),
+                        url('./Animated Login Form Using HTML and CSS/Animated Login Form Using HTML and CSS/image.png') no-repeat center/cover;
+            background-color: #060814;
+            background-image:
+                radial-gradient(circle at 0% 0%, rgba(124, 92, 255, 0.15), transparent 40%),
+                radial-gradient(circle at 100% 20%, rgba(87, 188, 255, 0.12), transparent 40%),
+                radial-gradient(circle at 50% 100%, rgba(124, 92, 255, 0.08), transparent 50%);
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+        display: flex;
+            flex-direction: column;
+            transition: opacity 0.25s ease;
+        }
+
+        body.fade-out {
+            opacity: 0;
+        }
+
+        header.site-header {
+        position: relative;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        background: transparent;
+            color: white;
+            padding: 0.6rem 0;
+            height: 72px;
+            min-height: 72px;
+        box-shadow: none;
+        border-bottom: none;
+        }
+
+        header.site-header .container {
+            max-width: 100%;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 760px) {
+            .container {
+                width: 100%;
+                padding: 0 18px;
+            }
+        }
+
+        .site-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            padding: 0.15rem 0;
+            background: transparent;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .site-header .logo-image img {
+            height: 46px;
+            width: auto;
+            display: block;
+        }
+
+        .site-header .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.08rem;
+            min-width: 120px;
+        }
+
+        .site-header .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            border-radius: 999px;
+            transition: all 0.25s ease;
+            font-size: 0.95rem;
+        }
+
+        .site-header .brand-name {
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            background: linear-gradient(135deg, #7b5cf2 0%, #3d8bff 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .site-header .brand-tagline {
+            font-size: 0.74rem;
+            color: rgba(255,255,255,0.75);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .site-header .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .site-header .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            padding: 0.85rem 1rem;
+            border-radius: 999px;
+            transition: all 0.25s ease;
+            font-size: 0.95rem;
+        }
+
+        .site-header .nav-links a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .site-header .nav-links a.cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 12px 22px rgba(102, 126, 234, 0.28);
+        }
+
+        .site-header .nav-links a.cta:hover {
+            background: linear-gradient(135deg, #5b6adb 0%, #8b5de2 100%);
+        }
+
+        .wrapper {
+            flex: 1 0 auto;
+            display: flex;
+            justify-content: center;
+        align-items: center;
+            width: 100%;
+            padding: 3rem 1rem;
+            background: transparent; /* Changed to transparent to use body background */
+        }
+
+        footer.site-footer {
+            background: rgba(8, 16, 38, 0.96);
+            color: #d4d9ee;
+            padding: 2.5rem 0 1.5rem;
+            width: 100%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(150px, 1fr));
+            gap: 1.5rem;
+            max-width: 100%;
+            margin: 0 auto 1.5rem;
+            padding: 0 32px;
+        }
+
+        .footer-column h3,
+        .footer-column h4 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .footer-column p,
+        .footer-bottom p {
+            color: #a8b4d1;
+            line-height: 1.7;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #c7d2ff;
+            text-decoration: none;
+            margin-bottom: 0.7rem;
+            transition: color 0.25s ease;
+        }
+
+        .footer-column a:hover {
+            color: #fff;
+        }
+
+        .footer-column .subscribe-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .footer-column .subscribe-form input {
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 999px;
+            padding: 0.95rem 1rem;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            outline: none;
+        }
+
+        .footer-column .subscribe-form button {
+            border: none;
+            border-radius: 999px;
+            padding: 0.95rem 1.35rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+
+        .footer-column .subscribe-form button:hover {
+            transform: translateY(-1px);
+        }
+
+        .footer-bottom {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.92rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-socials a {
+            color: #d6e2ff;
+            text-decoration: none;
+        }
+
+        .footer-socials a:hover {
+            color: #fff;
+        }
+
+        .scroll-top {
+            position: fixed;
+            right: 20px;
+            bottom: 24px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            z-index: 1100;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                padding: 0 16px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 16px;
+            }
+        }
+
+        @keyframes animateBg {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .login-box {
+            position: relative;
+            width: 400px;
+            height: auto;
+            min-height: 520px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(18px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            padding: 40px 30px;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .input-box {
+            position: relative;
+            width: 100%;
+            margin: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .input-box label {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            font-size: 1em;
+            color: rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+            transition: 0.3s ease;
+        }
+
+        .input-box input:focus ~ label,
+        .input-box input:valid ~ label {
+            top: -12px;
+            font-size: 0.9em;
+            color: #fff;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 50px;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            color: #fff;
+            padding: 0 35px 0 5px;
+        }
+
+        .input-box .icon {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            color: #fff;
+            transform: translateY(-50%);
+            font-size: 0.95em;
+        }
+
+        .remember-forgot {
+            margin: -10px 0 20px;
+            font-size: 0.9em;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .remember-forgot label {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9em;
+        }
+
+        .remember-forgot a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            width: 100%;
+            height: 48px;
+            background-color: #fff;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 1em;
+            color: #111;
+            font-weight: 600;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(255, 255, 255, 0.22);
+        }
+
+        .register-link {
+            font-size: 0.9em;
+            color: #fff;
+            text-align: center;
+            margin: 25px 0 0;
+        }
+
+        .register-link p a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .register-link p a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-message {
+            display: none; /* Hidden by default, shown by JS */
+            margin: 0 0 1rem;
+            padding: 0.95rem 1rem;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #eef2ff;
+            border: 1px solid transparent;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .auth-message.success {
+            display: block;
+            background: rgba(34, 197, 94, 0.12);
+            border-color: rgba(34, 197, 94, 0.35);
+            color: #d1fae5;
+        }
+
+        .auth-message.error {
+            display: block;
+            background: rgba(248, 113, 113, 0.12);
+            border-color: rgba(248, 113, 113, 0.35);
+            color: #fecaca;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 500px) {
+            .login-box {
+                width: 100%;
+                min-height: 100vh;
+                border: none;
+                border-radius: 0;
+                padding: 30px 20px;
+            }
+
+            .input-box {
+                width: 100%;
+            }
+        }
+        .premium-particles { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .particle { position: absolute; border-radius: 50%; animation: floatUp infinite linear; }
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) translateX(0) scale(0.5); opacity: 0; }
+            20%, 80% { opacity: var(--max-opacity, 0.8); }
+            100% { transform: translateY(-10vh) translateX(var(--drift)) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="premium-particles" id="premium-particles"></div>
+    <header class="site-header">
+        <nav class="container">
+            <a class="logo" href="index.html">
+                <div class="logo-image">
+                    <img src="website/Trendifyo in vibrant blue and purple.ico" alt="Trendifyo logo">
+                </div>
+                <div class="logo-text">
+                    <span class="brand-name">Trendifyo</span>
+                    <span class="brand-tagline">Curated trend delivery</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a class="cart-link" href="javascript:void(0)" onclick="toggleCart(event); return false;">Cart (0)</a></li>
+                <li><a class="cta" href="/trendifyo/login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <canvas id="hero-network" class="hero-network" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.85;"></canvas>
+    <div class="wrapper">
+        <div class="login-box">
+            <div id="auth-message" class="auth-message"></div>
+            <form id="login-form" autocomplete="off">
+                <h2>Login</h2>
+                <div class="input-box">
+                    <input type="email" id="login-email" name="email" required="" autocomplete="off" />
+                    <label>Email</label>
+                    <span class="icon">👤</span>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="login-password" name="password" required="" autocomplete="new-password" />
+                    <label>Password</label>
+                    <span class="icon">🔒</span>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox" /> Remember</label>
+                    <a href="#" onclick="showForgotPasswordForm(event)">Forgot Password?</a>
+                </div>
+                <button type="submit" id="login-submit-btn">Login <span class="loading-spinner" style="display: none;"></span></button>
+                <div class="register-link">
+                    <p>Don't have an account? <a href="register.html">Register</a></p>
+                </div>
+            </form>
+
+            <form id="forgot-password-form" style="display: none;" autocomplete="off">
+                <h2>Reset Password</h2>
+                <div class="input-box">
+                    <input type="email" id="reset-email" name="email" required="" autocomplete="off" />
+                    <label>Email</label>
+                    <span class="icon">📧</span>
+                </div>
+                <button type="submit" id="reset-password-submit-btn">Send Reset Link <span class="loading-spinner" style="display: none;"></span></button>
+                <div class="register-link">
+                    <p><a href="#" onclick="showLoginForm(event)">Back to Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V6" />
+            <path d="M5 13l7-7 7 7" />
+        </svg>
+    </button>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <a class="logo" href="index.html" style="margin-bottom: 1rem;">
+                    <img src="website/Trendifyo in vibrant blue and purple.ico" alt="Trendifyo logo" style="height: 46px; width: auto; display: block;">
+                    <span class="brand-name" style="font-size: 1.05rem; font-weight: 800; letter-spacing: 0.08em; background: linear-gradient(135deg, #7b5cf2 0%, #3d8bff 100%); -webkit-background-clip: text; color: transparent;">Trendifyo</span>
+                </a>
+                <p>Shop premium lifestyle gear with sleek design, smart value, and fast support.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Quick links</h4>
+                <a href="index.html">Home</a>
+                <a href="index.html#products">Products</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <a href="#">Help Center</a>
+                <a href="#">Shipping</a>
+                <a href="#">Refunds</a>
+                <a href="#">Privacy</a>
+            </div>
+            <div class="footer-column">
+                <h4>Stay updated</h4>
+                <p>Subscribe to receive the latest offers and product launches.</p>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Your email address" />
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Trendifyo. Crafted for a modern shopping experience.</p>
+            <div class="footer-socials">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.querySelectorAll('a[href$="login.html"], a[href$="register.html"]').forEach(link => {
+            link.addEventListener('click', event => {
+                const target = link.getAttribute('href');
+                if (target) {
+                    event.preventDefault();
+                    document.body.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.location.href = target;
+                    }, 180);
+                }
+            });
+        });
+    </script>
+    <script type="module">
+        import { handleForgotPassword, showAuthMessage, clearAuthMessage } from './firebase-auth.js';
+        import { handleLogin, showLoadingSpinner, hideLoadingSpinner } from './firebase-auth.js'; // Import handleLogin and spinner functions
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('login-form');
+            const loginSubmitBtn = document.getElementById('login-submit-btn');
+            const loginSpinner = loginSubmitBtn ? loginSubmitBtn.querySelector('.loading-spinner') : null;
+            const forgotPasswordForm = document.getElementById('forgot-password-form');
+            const resetPasswordSubmitBtn = document.getElementById('reset-password-submit-btn');
+
+            // Expose functions globally for onclick attributes
+            window.showForgotPasswordForm = (event) => {
+                if (event) event.preventDefault();
+                if (loginForm) loginForm.style.display = 'none';
+                if (forgotPasswordForm) forgotPasswordForm.style.display = 'block';
+                clearAuthMessage(); // Clear any existing messages
+            };
+
+            window.showLoginForm = (event) => {
+                if (event) event.preventDefault();
+                if (forgotPasswordForm) forgotPasswordForm.style.display = 'none';
+                if (loginForm) loginForm.style.display = 'block';
+                clearAuthMessage(); // Clear any existing messages
+            };
+
+            if (resetPasswordSubmitBtn) {
+                const resetSpinner = resetPasswordSubmitBtn.querySelector('.loading-spinner');
+                resetPasswordSubmitBtn.addEventListener('click', async (event) => {
+                    if (resetSpinner) showLoadingSpinner(resetPasswordSubmitBtn, resetSpinner);
+                    await handleForgotPassword();
+                    if (resetSpinner) hideLoadingSpinner(resetPasswordSubmitBtn, resetSpinner);
+                });
+            }
+            if (loginForm) {
+                loginForm.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    if (loginSpinner) showLoadingSpinner(loginSubmitBtn, loginSpinner);
+                    await handleLogin(); // Call the Firebase login function
+                    // Spinner will be hidden by handleLogin's .then/.catch blocks
+                });
+            }
+        });
+    </script>
+    <script type="module" src="firebase-auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('premium-particles');
+            if (!container) return;
+            const colors = ['rgba(124, 92, 255, 0.8)', 'rgba(87, 188, 255, 0.8)', 'rgba(255, 255, 255, 0.6)'];
+            for (let i = 0; i < 45; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 4 + 1.5;
+                particle.style.cssText = `width: ${size}px; height: ${size}px; left: ${Math.random() * 100}%; animation-duration: ${Math.random() * 15 + 15}s; animation-delay: -${Math.random() * 20}s;`;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 ${size * 3}px ${color}`;
+                particle.style.setProperty('--drift', (Math.random() * 120 - 60) + 'px');
+                particle.style.setProperty('--max-opacity', Math.random() * 0.5 + 0.3);
+                container.appendChild(particle);
+            }
+
+            const canvas = document.getElementById('hero-network');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width, height;
+                let particles = [];
+                let roundParticles = [];
+                function resize() {
+                    width = canvas.width = canvas.offsetWidth;
+                    height = canvas.height = canvas.offsetHeight;
+                }
+                window.addEventListener('resize', resize);
+                resize();
+                class Particle {
+                    constructor() {
+                        this.x = Math.random() * width;
+                        this.y = Math.random() * height;
+                        this.vx = (Math.random() - 0.5) * 0.8;
+                        this.vy = (Math.random() - 0.5) * 0.8;
+                        this.radius = Math.random() * 1.5 + 1;
+                    }
+                    update() {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        if (this.x < 0 || this.x > width) this.vx *= -1;
+                        if (this.y < 0 || this.y > height) this.vy *= -1;
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(124, 92, 255, 0.9)';
+                        ctx.fill();
+                    }
+                }
+                class RoundParticle {
+                    constructor() {
+                        this.x = Math.random() * width;
+                        this.y = Math.random() * height;
+                        this.vx = (Math.random() - 0.5) * 0.3;
+                        this.vy = (Math.random() - 0.5) * 0.3;
+                        this.radius = Math.random() * 4 + 2;
+                        this.color = Math.random() > 0.5 ? 'rgba(124, 92, 255, 0.4)' : 'rgba(87, 188, 255, 0.4)';
+                    }
+                    update() {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        if (this.x < 0 || this.x > width) this.vx *= -1;
+                        if (this.y < 0 || this.y > height) this.vy *= -1;
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.shadowBlur = 10;
+                        ctx.shadowColor = this.color;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    }
+                }
+                for (let i = 0; i < 70; i++) {
+                    particles.push(new Particle());
+                }
+                for (let i = 0; i < 25; i++) {
+                    roundParticles.push(new RoundParticle());
+                }
+                function animate() {
+                    ctx.clearRect(0, 0, width, height);
+                    for (let i = 0; i < roundParticles.length; i++) {
+                        roundParticles[i].update();
+                        roundParticles[i].draw();
+                    }
+                    for (let i = 0; i < particles.length; i++) {
+                        particles[i].update();
+                        particles[i].draw();
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 130) {
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.strokeStyle = `rgba(87, 188, 255, ${(1 - dist / 130) * 0.5})`;
+                                ctx.lineWidth = 1;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    requestAnimationFrame(animate);
+                }
+                animate();
+            }
+        });
+    </script>
+    <script type="module">
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js';
+        function updateAuthHeader(isLoggedIn) {
+            const authLink = document.querySelector('.nav-links .cta');
+            if (authLink) {
+                if (isLoggedIn) {
+                    if (window.location.pathname.includes('my-account.html')) {
+                        authLink.textContent = 'Logout';
+                        authLink.href = 'javascript:void(0)';
+                        authLink.onclick = (e) => {
+                            e.preventDefault();
+                            try {
+                                signOut(getAuth()).then(() => {
+                                    localStorage.removeItem('trendifyo_profile');
+                                    window.location.href = 'login.html';
+                                });
+                            } catch (err) {
+                                localStorage.removeItem('trendifyo_profile');
+                                window.location.href = 'login.html';
+                            }
+                        };
+                    } else {
+                        authLink.textContent = 'My Account';
+                        authLink.href = 'my-account.html';
+                        authLink.onclick = null;
+                    }
+                } else {
+                    authLink.textContent = 'Login';
+                    authLink.href = '/trendifyo/login.html';
+                    authLink.onclick = null;
+                }
+            }
+        }
+        try { onAuthStateChanged(getAuth(), user => { updateAuthHeader(!!user); }); } catch (error) { const profile = JSON.parse(localStorage.getItem('trendifyo_profile') || 'null'); updateAuthHeader(!!(profile && profile.email)); }
+    </script>
+</body>
+</html>

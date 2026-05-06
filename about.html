@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Trendifyo</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            scroll-behavior: smooth;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at top, rgba(78, 90, 235, 0.18), transparent 32%),
+                        linear-gradient(180deg, #060814 0%, #090c1f 42%, #0f162f 100%);
+            color: #eef3ff;
+        }
+        .container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .site-header {
+        background: transparent;
+            color: white;
+            padding: 0.6rem 0;
+            height: 72px;
+            min-height: 72px; /* Ensure consistent height */
+            position: relative; /* Changed from sticky to relative */
+            top: 0;
+            z-index: 1000;
+        box-shadow: none;
+        border-bottom: none;
+            width: 100%;
+        }
+        header.site-header .container {
+            max-width: 100%;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            padding: 0.15rem 0;
+            background: transparent;
+            text-decoration: none;
+            color: #fff;
+        }
+        .logo-image img {
+            height: 46px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+            background: transparent;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.08rem;
+            min-width: 120px;
+        }
+        .brand-name {
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            background: linear-gradient(135deg, #7b5cf2 0%, #3d8bff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: brandPulse 4s ease-in-out infinite;
+        }
+        .brand-tagline {
+            font-size: 0.74rem;
+            color: rgba(255,255,255,0.75);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        @keyframes brandPulse {
+            0%, 100% { opacity: 0.95; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-2px); }
+        }
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .nav-links a {
+            color: rgba(255,255,255,0.88);
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            border-radius: 999px;
+            transition: all 0.25s ease;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-1px);
+        }
+        .nav-links a.cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(102,126,234,0.25);
+        }
+        .nav-links a.cta:hover {
+            background: linear-gradient(135deg, #5b69e3 0%, #8759d1 100%);
+        }
+        .nav-links .dropdown { position: relative; }
+        .nav-links .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(15, 22, 47, 0.95); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 0.5rem 0; list-style: none; display: none; flex-direction: column; min-width: 120px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); z-index: 1000; }
+        .nav-links .dropdown:hover .dropdown-menu { display: flex; }
+        .nav-links .dropdown-menu li { width: 100%; }
+        .nav-links .dropdown-menu a { display: block; padding: 0.7rem 1.2rem; color: rgba(255,255,255,0.85); border-radius: 0; transition: background 0.2s ease; text-align: center; font-size: 0.9rem; }
+        .nav-links .dropdown-menu a:hover { background: rgba(255,255,255,0.1); color: #fff; transform: none; }
+        
+        .mobile-menu-btn { display: none; background: transparent; border: none; color: #fff; cursor: pointer; padding: 0.4rem; border-radius: 8px; transition: background 0.2s; z-index: 101; }
+        .mobile-menu-btn:hover { background: rgba(255,255,255,0.1); }
+        .mobile-socials { display: none !important; }
+        .mobile-menu-close { display: none; }
+        .menu-backdrop { visibility: hidden; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 999; opacity: 0; transition: opacity 0.3s ease, visibility 0.3s ease; }
+        .menu-backdrop.active { visibility: visible; opacity: 1; }
+        .page-hero {
+            padding: 5rem 0 3rem;
+            display: grid;
+            gap: 2rem;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-network {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.85;
+        }
+        .hero-copy {
+            max-width: 720px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-copy span {
+            display: inline-flex;
+            margin-bottom: 1rem;
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
+            background: rgba(116, 80, 255, 0.14);
+            color: #c3d5ff;
+            letter-spacing: 0.16em;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+        }
+        .hero-copy h1 {
+            margin: 0;
+            font-size: clamp(2.5rem, 4vw, 4.4rem);
+            line-height: 0.95;
+            color: #fff;
+        }
+        .hero-copy p {
+            max-width: 680px;
+            margin: 1.4rem 0 0;
+            color: rgba(235,245,255,0.8);
+            line-height: 1.85;
+            font-size: 1.05rem;
+        }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .hero-actions .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 1.75rem;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #7287ff 0%, #5b43d4 100%);
+            color: #fff;
+            box-shadow: 0 18px 40px rgba(78, 90, 235, 0.28);
+        }
+        .btn-secondary {
+            background: rgba(255,255,255,0.08);
+            color: #f8fbff;
+            border: 1px solid rgba(255,255,255,0.18);
+        }
+        .feature-grid {
+            display: grid;
+            gap: 1.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            margin-top: 3rem;
+        }
+        .feature-card {
+            padding: 1.8rem;
+            border-radius: 28px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+        }
+        .feature-card h3 {
+            margin: 0 0 0.85rem;
+            color: #fff;
+            font-size: 1.15rem;
+        }
+        .feature-card p {
+            margin: 0;
+            color: rgba(235,245,255,0.76);
+            line-height: 1.8;
+        }
+        .content-section {
+            padding: 3rem 0 4rem;
+        }
+        .content-section h2 {
+            margin: 0 0 1rem;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            color: #fff;
+        }
+        .content-section p {
+            margin: 0;
+            color: rgba(235,245,255,0.78);
+            line-height: 1.8;
+            max-width: 780px;
+        }
+        footer.site-footer {
+            background: rgba(8, 16, 38, 0.98);
+            color: #d4d9ee;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+            width: 100%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(180px, 1fr));
+            gap: 2rem;
+            max-width: 100%;
+            margin: 0 auto 1.5rem;
+            padding: 0 32px;
+        }
+
+        .footer-column h3,
+        .footer-column h4 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .footer-column p {
+            color: #a8b4d1;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            max-width: 320px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #c7d2ff;
+            text-decoration: none;
+            margin-bottom: 0.75rem;
+            transition: color 0.25s ease;
+        }
+
+        .footer-column a:hover {
+            color: #fff;
+        }
+
+        .footer-column .subscribe-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .footer-column .subscribe-form input {
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 999px;
+            padding: 0.95rem 1rem;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            outline: none;
+        }
+
+        .footer-column .subscribe-form button {
+            border: none;
+            border-radius: 999px;
+            padding: 0.95rem 1.35rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+
+        .footer-column .subscribe-form button:hover {
+            transform: translateY(-1px);
+        }
+
+        .footer-bottom {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #8fa4d1;
+            font-size: 0.95rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-socials a {
+            color: #d6e2ff;
+            text-decoration: none;
+        }
+
+        .footer-socials a:hover {
+            color: #fff;
+        }
+        @media (max-width: 840px) {
+            .site-header nav { flex-wrap: wrap; position: relative; justify-content: space-between; align-items: center; flex-direction: row; }
+            .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
+            .nav-links { position: fixed; top: 0; left: 0; height: 100vh; width: 280px; max-width: 80vw; background: rgba(10, 15, 38, 0.98); flex-direction: column; align-items: flex-start; padding: 5rem 1.5rem 2rem; margin: 0; z-index: 2000; transform: translateX(-100%); transition: transform 0.3s ease; box-shadow: 20px 0 50px rgba(0,0,0,0.5); backdrop-filter: blur(12px); border-right: 1px solid rgba(255,255,255,0.1); }
+            .nav-links.active { transform: translateX(0); }
+            .nav-links a { width: 100%; text-align: left; padding: 1rem 1.5rem; border-radius: 12px; font-size: 1.1rem; }
+            .mobile-menu-close { display: block; position: absolute; top: 1rem; right: 1rem; background: transparent; border: none; color: #fff; font-size: 2.2rem; cursor: pointer; padding: 0.5rem; line-height: 1; }
+            .mobile-socials { display: flex !important; gap: 1rem; margin-top: auto; width: 100%; justify-content: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
+            .nav-links .mobile-socials a { width: auto; padding: 0.8rem; border-radius: 50%; background: rgba(255,255,255,0.05); display: inline-flex; align-items: center; justify-content: center; }
+            .nav-links .mobile-socials a:hover { background: rgba(124,92,255,0.2); }
+            .hero-copy h1 { font-size: 2.7rem; }
+        }
+    </style>
+    <style>
+        .scroll-top { position: fixed; right: 20px; bottom: 24px; width: 48px; height: 48px; border-radius: 50%; border: none; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; font-size: 1.3rem; cursor: pointer; display: grid; place-items: center; box-shadow: 0 18px 40px rgba(0,0,0,0.22); opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.25s ease, transform 0.25s ease; z-index: 1100; }
+        .scroll-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    </style>
+    <style>
+        .premium-particles { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .particle { position: absolute; border-radius: 50%; animation: floatUp infinite linear; }
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) translateX(0) scale(0.5); opacity: 0; }
+            20%, 80% { opacity: var(--max-opacity, 0.8); }
+            100% { transform: translateY(-10vh) translateX(var(--drift)) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="premium-particles" id="premium-particles"></div>
+    <div class="menu-backdrop" id="menuBackdrop" onclick="toggleMobileMenu()"></div>
+    <header class="site-header">
+        <nav class="container">
+            <a class="logo" href="index.html">
+                <div class="logo-image">
+                    <img src="website/Trendifyo in vibrant blue and purple.ico" alt="Trendifyo logo">
+                </div>
+                <div class="logo-text">
+                    <span class="brand-name">Trendifyo</span>
+                    <span class="brand-tagline">Curated trend delivery</span>
+                </div>
+            </a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">×</button>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a class="cart-link" href="javascript:void(0)" onclick="toggleCart(event); return false;">Cart (0)</a></li>
+                <li><a class="cta" href="/trendifyo/login.html">Login</a></li>
+                <li class="mobile-socials">
+                    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="page-hero">
+            <canvas id="hero-network" class="hero-network"></canvas>
+            <div class="hero-copy">
+                <span>About Trendifyo</span>
+                <h1>Building a premium marketplace for modern shopping.</h1>
+                <p>Trendifyo combines curated products, smart deals, and sleek design to make online shopping feel effortless and stylish.</p>
+                <div class="hero-actions">
+                    <a href="shop.html" class="btn btn-primary">Browse Products</a>
+                    <a href="contact.html" class="btn btn-secondary">Talk to Sales</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Our mission</h2>
+            <p>We want to empower customers with a premium shopping experience that feels personal, curated, and trustworthy. Our collection is shaped by quality, design, and fast access to the latest lifestyle essentials.</p>
+        </section>
+
+        <section class="feature-grid">
+            <div class="feature-card">
+                <h3>Curated product discovery</h3>
+                <p>Each item is selected for performance, aesthetics, and value so customers get the best options without the overwhelm.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Trusted marketplace feel</h3>
+                <p>Modern layouts, clean navigation, and smart categorization make browsing feel familiar and effortless.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Design-driven shopping</h3>
+                <p>We create premium pages and offers that highlight products beautifully, with strong focus on visual polish and usability.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Customer-first support</h3>
+                <p>From contact updates to product guidance, our support is built to keep every purchase smooth and satisfying.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <a class="logo" href="index.html" style="margin-bottom: 1rem;">
+                    <img src="website/Trendifyo in vibrant blue and purple.ico" alt="Trendifyo logo" style="height: 46px; width: auto; display: block;">
+                    <span class="brand-name" style="font-size: 1.05rem; font-weight: 800; letter-spacing: 0.08em; background: linear-gradient(135deg, #7b5cf2 0%, #3d8bff 100%); -webkit-background-clip: text; color: transparent;">Trendifyo</span>
+                </a>
+                <p>Elevating every shopping experience with curated picks, bold style, and fast delivery.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <a href="#">Help Center</a>
+                <a href="#">Shipping</a>
+                <a href="#">Refunds</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="footer-column">
+                <h4>Stay in touch</h4>
+                <p>Subscribe to receive exclusive drops, deals, and product alerts.</p>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Your email address" />
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Trendifyo. Crafted for a modern shopping experience.</p>
+            <div class="footer-socials">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+    </footer>
+    <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><path d="M12 19V6" /><path d="M5 13l7-7 7 7" /></svg>
+    </button>
+    <script type="module" src="firebase-auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const cart = JSON.parse(localStorage.getItem('trendifyoCart') || '[]');
+                const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+                const cartLink = document.querySelector('.cart-link');
+                if (cartLink) cartLink.textContent = `Cart (${count})`;
+            } catch(e) {}
+        });
+
+    function toggleMobileMenu() {
+        const nav = document.getElementById('navLinks');
+        if(nav) nav.classList.toggle('active');
+        const backdrop = document.getElementById('menuBackdrop');
+        if(backdrop) backdrop.classList.toggle('active');
+    }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('premium-particles');
+            if (!container) return;
+            const colors = ['rgba(124, 92, 255, 0.8)', 'rgba(87, 188, 255, 0.8)', 'rgba(255, 255, 255, 0.6)'];
+            for (let i = 0; i < 45; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 4 + 1.5;
+                particle.style.cssText = `width: ${size}px; height: ${size}px; left: ${Math.random() * 100}%; animation-duration: ${Math.random() * 15 + 15}s; animation-delay: -${Math.random() * 20}s;`;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 ${size * 3}px ${color}`;
+                particle.style.setProperty('--drift', (Math.random() * 120 - 60) + 'px');
+                particle.style.setProperty('--max-opacity', Math.random() * 0.5 + 0.3);
+                container.appendChild(particle);
+            }
+
+        const canvas = document.getElementById('hero-network');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            function resize() {
+                width = canvas.width = canvas.offsetWidth;
+                height = canvas.height = canvas.offsetHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 0.8;
+                    this.vy = (Math.random() - 0.5) * 0.8;
+                    this.radius = Math.random() * 1.5 + 1;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(124, 92, 255, 0.9)';
+                    ctx.fill();
+                }
+            }
+            for (let i = 0; i < 70; i++) {
+                particles.push(new Particle());
+            }
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 130) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(87, 188, 255, ${(1 - dist / 130) * 0.5})`;
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        if (scrollTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) scrollTopBtn.classList.add('visible');
+                else scrollTopBtn.classList.remove('visible');
+            });
+            scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
+        });
+    </script>
+    <script type="module">
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js';
+        function updateAuthHeader(isLoggedIn) {
+            const authLink = document.querySelector('.nav-links .cta');
+            if (authLink) {
+                if (isLoggedIn) {
+                    if (window.location.pathname.includes('my-account.html')) {
+                        authLink.textContent = 'Logout';
+                        authLink.href = 'javascript:void(0)';
+                        authLink.onclick = (e) => {
+                            e.preventDefault();
+                            try {
+                                signOut(getAuth()).then(() => {
+                                    localStorage.removeItem('trendifyo_profile');
+                                    window.location.href = 'login.html';
+                                });
+                            } catch (err) {
+                                localStorage.removeItem('trendifyo_profile');
+                                window.location.href = 'login.html';
+                            }
+                        };
+                    } else {
+                        authLink.textContent = 'My Account';
+                        authLink.href = 'my-account.html';
+                        authLink.onclick = null;
+                    }
+                } else {
+                    authLink.textContent = 'Login';
+                    authLink.href = '/trendifyo/login.html';
+                    authLink.onclick = null;
+                }
+            }
+        }
+        try { onAuthStateChanged(getAuth(), user => { updateAuthHeader(!!user); }); } catch (error) { const profile = JSON.parse(localStorage.getItem('trendifyo_profile') || 'null'); updateAuthHeader(!!(profile && profile.email)); }
+    </script>
+</body>
+</html>

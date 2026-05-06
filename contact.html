@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Trendifyo</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at top right, rgba(124, 92, 255, 0.16), transparent 22%),
+                        linear-gradient(180deg, #060814 0%, #0f1024 40%, #11172f 100%);
+            color: #eef3ff;
+        }
+        .container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .site-header {
+        background: transparent;
+            color: white;
+            padding: 0.6rem 0;
+            height: 72px;
+            min-height: 72px; /* Ensure consistent height */
+            position: static;
+            z-index: 100;
+        box-shadow: none;
+        border-bottom: none;
+            width: 100%;
+        }
+        header.site-header .container {
+            max-width: 100%;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            padding: 0.15rem 0;
+            background: transparent;
+            text-decoration: none;
+            color: #fff;
+        }
+        .logo-image img {
+            height: 46px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+            background: transparent;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.08rem;
+            min-width: 120px;
+        }
+        .brand-name {
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            background: linear-gradient(135deg, #7b5cf2 0%, #3d8bff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: brandPulse 4s ease-in-out infinite;
+        }
+        .brand-tagline {
+            font-size: 0.74rem;
+            color: rgba(255,255,255,0.75);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        @keyframes brandPulse {
+            0%, 100% { opacity: 0.95; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-2px); }
+        }
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .nav-links a {
+            color: rgba(255,255,255,0.88);
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            border-radius: 999px;
+            transition: all 0.25s ease;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-1px);
+        }
+        .nav-links a.cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(102,126,234,0.25);
+        }
+        .nav-links a.cta:hover {
+            background: linear-gradient(135deg, #5b69e3 0%, #8759d1 100%);
+        }
+        .nav-links .dropdown { position: relative; }
+        .nav-links .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(15, 22, 47, 0.95); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 0.5rem 0; list-style: none; display: none; flex-direction: column; min-width: 120px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); z-index: 1000; }
+        .nav-links .dropdown:hover .dropdown-menu { display: flex; }
+        .nav-links .dropdown-menu li { width: 100%; }
+        .nav-links .dropdown-menu a { display: block; padding: 0.7rem 1.2rem; color: rgba(255,255,255,0.85); border-radius: 0; transition: background 0.2s ease; text-align: center; font-size: 0.9rem; }
+        .nav-links .dropdown-menu a:hover { background: rgba(255,255,255,0.1); color: #fff; transform: none; }
+        .page-hero {
+            padding: 5rem 0 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-network {
+            position: absolute;
+            top: 0; /* Changed to fixed for full background */
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.85;
+        }
+        .hero-copy {
+            max-width: 720px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-copy span {
+            display: inline-flex;
+            margin-bottom: 1rem;
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
+            background: rgba(124, 92, 255, 0.16);
+            color: #c3d5ff;
+            letter-spacing: 0.16em;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+        }
+        .hero-copy h1 {
+            margin: 0;
+            font-size: clamp(2.6rem, 4vw, 4.2rem);
+            line-height: 0.98;
+            color: #fff;
+        }
+        .hero-copy p {
+            margin: 1.4rem 0 0;
+            max-width: 680px;
+            color: rgba(235,245,255,0.82);
+            line-height: 1.85;
+            font-size: 1.05rem;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.35fr 0.95fr;
+            gap: 2rem;
+            margin: 2.75rem 0 4rem;
+        }
+        .contact-card,
+        .contact-form {
+            padding: 2rem;
+            border-radius: 32px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 28px 90px rgba(0, 0, 0, 0.16);
+        }
+        .contact-card h2,
+        .contact-form h2 {
+            margin: 0 0 1rem;
+            color: #fff;
+            font-size: 1.6rem;
+            line-height: 1.2;
+        }
+        .contact-card p,
+        .contact-form p {
+            margin: 0;
+            color: rgba(235,245,255,0.78);
+            line-height: 1.8;
+        }
+        .contact-detail {
+            margin-top: 1.7rem;
+            display: grid;
+            gap: 1rem;
+        }
+        .contact-detail span {
+            display: block;
+            color: rgba(255,255,255,0.88);
+            font-weight: 700;
+        }
+        .contact-detail small {
+            display: block;
+            color: rgba(228,236,255,0.78);
+        }
+        .contact-form {
+            display: grid;
+            gap: 1.4rem;
+        }
+        .form-grid {
+            display: grid;
+            gap: 1rem;
+        }
+        .form-grid label {
+            display: grid;
+            gap: 0.55rem;
+            color: rgba(235,245,255,0.86);
+            font-size: 0.98rem;
+        }
+        .form-grid .full-width {
+            grid-column: 1 / -1;
+        }
+        .contact-form label {
+            display: grid;
+            gap: 0.55rem;
+            color: rgba(235,245,255,0.86);
+            font-size: 0.98rem;
+        }
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 1rem 1.1rem;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.05);
+            color: #f7fbff;
+            font: inherit;
+            resize: vertical;
+        }
+        select {
+            appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, rgba(255,255,255,0.5) 50%),
+                              linear-gradient(135deg, rgba(255,255,255,0.5) 50%, transparent 50%);
+            background-position: calc(100% - 1.1rem) calc(1rem + 2px), calc(100% - 0.6rem) calc(1rem + 2px);
+            background-size: 6px 6px, 6px 6px;
+            background-repeat: no-repeat;
+            padding-right: 2.5rem;
+        }
+        input::placeholder,
+        textarea::placeholder {
+            color: rgba(255,255,255,0.52);
+        }
+        .form-note {
+            color: rgba(255,255,255,0.72);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .contact-form button {
+            margin-top: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 1.75rem;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, #7287ff 0%, #5b43d4 100%);
+            color: #fff;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            box-shadow: 0 18px 40px rgba(78,90,235,0.28);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .contact-form button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 22px 46px rgba(78,90,235,0.35);
+        }
+        @media (min-width: 768px) {
+            .form-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .form-grid .full-width {
+                grid-column: 1 / -1;
+            }
+        }
+        footer.site-footer {
+            background: rgba(8, 16, 38, 0.98);
+            color: #d4d9ee;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+            width: 100%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(180px, 1fr));
+            gap: 2rem;
+            max-width: 100%;
+            margin: 0 auto 1.5rem;
+            padding: 0 32px;
+        }
+
+        .footer-column h3,
+        .footer-column h4 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .footer-column p {
+            color: #a8b4d1;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            max-width: 320px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #c7d2ff;
+            text-decoration: none;
+            margin-bottom: 0.75rem;
+            transition: color 0.25s ease;
+        }
+
+        .footer-column a:hover {
+            color: #fff;
+        }
+
+        .footer-column .subscribe-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .footer-column .subscribe-form input {
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 999px;
+            padding: 0.95rem 1rem;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            outline: none;
+        }
+
+        .footer-column .subscribe-form button {
+            border: none;
+            border-radius: 999px;
+            padding: 0.95rem 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .footer-column .subscribe-form button:hover {
+            transform: translateY(-1px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 1.5rem;
+            max-width: 100%;
+            margin: 0 auto;
+            padding-left: 32px;
+            padding-right: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: #a8b4d1;
+            margin: 0;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-socials a {
+            color: #a8b4d1;
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+
+        .footer-socials a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        @media (max-width: 960px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <style>
+        .scroll-top { position: fixed; right: 20px; bottom: 24px; width: 48px; height: 48px; border-radius: 50%; border: none; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; font-size: 1.3rem; cursor: pointer; display: grid; place-items: center; box-shadow: 0 18px 40px rgba(0,0,0,0.22); opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.25s ease, transform 0.25s ease; z-index: 1100; }
+        .scroll-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    </style>
+    <style>
+        .premium-particles { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .particle { position: absolute; border-radius: 50%; animation: floatUp infinite linear; }
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) translateX(0) scale(0.5); opacity: 0; }
+            20%, 80% { opacity: var(--max-opacity, 0.8); }
+            100% { transform: translateY(-10vh) translateX(var(--drift)) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="hero-network" class="hero-network"></canvas>
+    <div class="premium-particles" id="premium-particles"></div>
+    <header class="site-header">
+        <nav class="container">
+            <a class="logo" href="index.html">
+                <div class="logo-image">
+                    <img src="website/Trendifyo in vibrant blue and purple.ico" alt="Trendifyo logo">
+                </div>
+                <div class="logo-text">
+                    <span class="brand-name">Trendifyo</span>
+                    <span class="brand-tagline">Curated trend delivery</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a class="cart-link" href="javascript:void(0)" onclick="toggleCart(event); return false;">Cart (0)</a></li>
+                <li><a class="cta" href="/trendifyo/login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="page-hero">
+            <div class="hero-copy">
+                <span>Get in touch</span>
+                <h1>Reach us for support, partnerships, or product inquiries.</h1>
+                <p>We’re here to help with premium service, fast responses, and personalized guidance for every Trendifyo customer.</p>
+            </div>
+        </section>
+
+        <section class="contact-grid">
+            <div class="contact-card">
+                <h2>Contact details</h2>
+                <p>Prefer direct support? Use the details below and our team will respond promptly.</p>
+                <div class="contact-detail">
+                    <span>support@trendifyo.com</span>
+                    <small>Email support available 24/7</small>
+                </div>
+                <div class="contact-detail">
+                    <span>+91 98765 43210</span>
+                    <small>Customer care hours: 8am - 9pm IST</small>
+                </div>
+                <div class="contact-detail">
+                    <span>Live chat</span>
+                    <small>Available during business hours on our site</small>
+                </div>
+            </div>
+            <form class="contact-form">
+                <h2>Send us a message</h2>
+                <p>Fill in your details and we’ll get back to you soon.</p>
+                <div class="form-grid">
+                    <label>
+                        Full name
+                        <input type="text" placeholder="John Doe" required>
+                    </label>
+                    <label>
+                        Email address
+                        <input type="email" placeholder="hello@trendifyo.com" required>
+                    </label>
+                    <label>
+                        Phone number
+                        <input type="tel" placeholder="+91 98765 43210">
+                    </label>
+                    <label>
+                        Topic
+                        <select required>
+                            <option value="">Choose a topic</option>
+                            <option value="order">Order support</option>
+                            <option value="product">Product inquiry</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="feedback">Feedback</option>
+                        </select>
+                    </label>
+                </div>
+                <label class="full-width">
+                    Message
+                    <textarea rows="7" placeholder="Tell us how we can help" required></textarea>
+                </label>
+                <p class="form-note">Need urgent help? Mention it here and our support team will prioritize your request.</p>
+                <button type="submit">Submit request</button>
+            </form>
+        </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Trendifyo</h3>
+                <span class="brand-name" style="font-size: 1.05rem; font-weight: 800; letter-spacing: 0.08em; background: linear-gradient(135deg, #7b5cf2 0%, #3d8bff 100%); -webkit-background-clip: text; color: transparent;">Trendifyo</span>
+                </a>
+                <p>Elevating every shopping experience with curated picks, bold style, and fast delivery.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <a href="#">Help Center</a>
+                <a href="#">Shipping</a>
+                <a href="#">Refunds</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="footer-column">
+                <h4>Stay in touch</h4>
+                <p>Subscribe to receive exclusive drops, deals, and product alerts.</p>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Your email address" />
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Trendifyo. Crafted for a modern shopping experience.</p>
+            <div class="footer-socials">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+    </footer>
+    <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><path d="M12 19V6" /><path d="M5 13l7-7 7 7" /></svg>
+    </button>
+    <script type="module" src="firebase-auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const cart = JSON.parse(localStorage.getItem('trendifyoCart') || '[]');
+                const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+                const cartLink = document.querySelector('.cart-link');
+                if (cartLink) cartLink.textContent = `Cart (${count})`;
+            } catch(e) {}
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('premium-particles');
+            if (!container) return;
+            const colors = ['rgba(124, 92, 255, 0.8)', 'rgba(87, 188, 255, 0.8)', 'rgba(255, 255, 255, 0.6)'];
+            for (let i = 0; i < 45; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 4 + 1.5;
+                particle.style.cssText = `width: ${size}px; height: ${size}px; left: ${Math.random() * 100}%; animation-duration: ${Math.random() * 15 + 15}s; animation-delay: -${Math.random() * 20}s;`;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 ${size * 3}px ${color}`;
+                particle.style.setProperty('--drift', (Math.random() * 120 - 60) + 'px');
+                particle.style.setProperty('--max-opacity', Math.random() * 0.5 + 0.3);
+                container.appendChild(particle);
+            }
+
+        const canvas = document.getElementById('hero-network');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            function resize() {
+                width = canvas.width = canvas.offsetWidth;
+                height = canvas.height = canvas.offsetHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 0.8;
+                    this.vy = (Math.random() - 0.5) * 0.8;
+                    this.radius = Math.random() * 1.5 + 1;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(124, 92, 255, 0.9)';
+                    ctx.fill();
+                }
+            }
+            for (let i = 0; i < 70; i++) {
+                particles.push(new Particle());
+            }
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 130) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(87, 188, 255, ${(1 - dist / 130) * 0.5})`;
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        if (scrollTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) scrollTopBtn.classList.add('visible');
+                else scrollTopBtn.classList.remove('visible');
+            });
+            scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
+        });
+    </script>
+    <script type="module">
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js';
+        function updateAuthHeader(isLoggedIn) {
+            const authLink = document.querySelector('.nav-links .cta');
+            if (authLink) {
+                if (isLoggedIn) {
+                    if (window.location.pathname.includes('my-account.html')) {
+                        authLink.textContent = 'Logout';
+                        authLink.href = 'javascript:void(0)';
+                        authLink.onclick = (e) => {
+                            e.preventDefault();
+                            try {
+                                signOut(getAuth()).then(() => {
+                                    localStorage.removeItem('trendifyo_profile');
+                                    window.location.href = 'login.html';
+                                });
+                            } catch (err) {
+                                localStorage.removeItem('trendifyo_profile');
+                                window.location.href = 'login.html';
+                            }
+                        };
+                    } else {
+                        authLink.textContent = 'My Account';
+                        authLink.href = 'my-account.html';
+                        authLink.onclick = null;
+                    }
+                } else {
+                    authLink.textContent = 'Login';
+                    authLink.href = '/trendifyo/login.html';
+                    authLink.onclick = null;
+                }
+            }
+        }
+        try { onAuthStateChanged(getAuth(), user => { updateAuthHeader(!!user); }); } catch (error) { const profile = JSON.parse(localStorage.getItem('trendifyo_profile') || 'null'); updateAuthHeader(!!(profile && profile.email)); }
+    </script>
+</body>
+</html>
