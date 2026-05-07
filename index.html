@@ -56,8 +56,8 @@
         }
 
         .hero .container {
-            max-width: 100%; /* Allow content to span full width of the hero section */
-            padding: 0 32px; /* Maintain standard horizontal padding */
+            max-width: 100%; 
+            padding: 0 32px; 
         }
 
         .mobile-menu-btn { display: none; background: transparent; border: none; color: #fff; cursor: pointer; padding: 0.4rem; border-radius: 8px; transition: background 0.2s; z-index: 101; }
@@ -70,8 +70,8 @@
             }
 
             .hero .container {
-                max-width: 100%; /* Ensure full width on smaller screens too */
-                padding: 0 18px; /* Apply standard mobile padding */
+                max-width: 100%; 
+                padding: 0 18px; 
             }
             
             nav { flex-wrap: wrap; position: relative; justify-content: space-between; align-items: center; }
@@ -269,7 +269,7 @@
         }
 
         /* ========================
-           PAGE SECTIONS
+            PAGE SECTIONS
         ======================== */
         .page {
             display: none;
@@ -422,7 +422,7 @@
         }
 
         /* ========================
-           HOME PAGE
+            HOME PAGE
         ======================== */
         .hero {
             position: relative;
@@ -834,7 +834,6 @@
             min-height: 220px;
             padding: 1rem;
             border-radius: 28px;
-            background: linear-gradient(160deg, rgba(20, 28, 56, 0.7), rgba(10, 14, 32, 0.8));
             background: linear-gradient(160deg, rgba(20, 28, 56, 0.9), rgba(10, 14, 32, 0.95));
             border: 1px solid rgba(255,255,255,0.18);
             box-shadow: 0 24px 80px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.12);
@@ -1201,21 +1200,6 @@
         @keyframes cardAppear {
             0% { opacity: 0; transform: translateY(42px); }
             100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 600px) {
-            .hero {
-                padding: 4rem 0 2rem;
-            }
-            .hero-actions {
-                justify-content: center;
-            }
-            .hero-stats {
-                grid-template-columns: 1fr;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
         }
         
         .products {
@@ -2198,7 +2182,7 @@
         }
 
         /* ========================
-           PRODUCT DETAIL PAGE
+            PRODUCT DETAIL PAGE
         ======================== */
         .breadcrumb {
             background: rgba(255,255,255,0.05);
@@ -3088,7 +3072,6 @@
         </div>
     </div>
 
-    <canvas id="hero-network" class="hero-network"></canvas>
     <div id="cart-panel" class="cart-panel">
         <div class="cart-backdrop" onclick="toggleCart(false)"></div>
         <div class="cart-drawer">
@@ -3563,8 +3546,8 @@
             1: {
                 name: "Inflatable Premium Air Bed",
                 category: "Home",
-                price: "₹3499",
-                originalPrice: "₹4999",
+                price: "₹3500",
+                originalPrice: "₹5000",
                 img: "inflatable-air-bed-portable-single-air-mattress-with-built-in-pump-500x500.webp",
                 desc: "Home-style comfort wherever you choose to sleep. Skip the manual pump and enjoy a firm, supportive mattress in minutes thanks to the integrated electric inflation system. Whether hosting guests or camping in style, this elevated air bed provides the restful night's sleep you deserve.",
                 specs: [
@@ -3581,7 +3564,7 @@
                 name: "Remote Control Stealth Fighter Drone",
                 category: "Electronics",
                 price: "₹999",
-                originalPrice: "₹1499",
+                originalPrice: "₹1500",
                 img: "61AvRJyA3TL._SL1500_.jpg",
                 desc: "Take to the skies with advanced aerial precision. Experience the thrill of flight with this durable, jet-inspired quadcopter featuring vibrant LED navigation lights. Easy-to-use controls and a stabilized design make it perfect for beginners and seasoned pilots looking for high-speed fun.",
                 specs: [
@@ -3598,7 +3581,7 @@
                 name: "Miniature Portable Gas Stove",
                 category: "Camping",
                 price: "₹499",
-                originalPrice: "₹799",
+                originalPrice: "₹800",
                 img: "51ANeuxwMpL.jpg",
                 desc: "Gourmet cooking performance in a compact frame. This ultra-lightweight stove offers precise flame control and a stable base for your campsite meals. Designed for maximum portability, it connects easily to standard canisters to ensure you never go hungry while exploring the wild.",
                 specs: [
@@ -3614,8 +3597,8 @@
             4: {
                 name: "Rechargeable Mist Cooler",
                 category: "Home",
-                price: "₹799",
-                originalPrice: "₹1499",
+                price: "₹1499",
+                originalPrice: "₹2000",
                 img: "SKU-8608_0-1773158392194.webp",
                 desc: "Quiet mist cooling with soft LED lighting, perfect for desktop evenings and bedside comfort.",
                 specs: [
@@ -3699,8 +3682,8 @@
             9: {
                 name: "Cordless Car Wash Gun",
                 category: "Home",
-                price: "₹1499",
-                originalPrice: "₹1999",
+                price: "₹3499",
+                originalPrice: "₹4999",
                 img: "SKU-0291_0-1766025479197.webp",
                 desc: "Cordless high-pressure cleaning for cars, bikes, and outdoor surfaces with adjustable spray modes and a rechargeable battery.",
                 specs: [
@@ -3717,7 +3700,7 @@
                 name: "Kitchen Weight Scale",
                 category: "Home",
                 price: "₹499",
-                originalPrice: "₹799",
+                originalPrice: "₹800",
                 img: "kitchen-weight-machine-portable-weighing-machine-lcd-display-original-imahj6prwggbzd7z.webp",
                 desc: "Digital kitchen scale with LCD display for precise ingredient weighing.",
                 specs: [
@@ -4152,7 +4135,6 @@
         }
 
         function showNotification(message) {
-            // Create notification element
             const notification = document.createElement('div');
             notification.innerHTML = message;
             notification.style.cssText = `
@@ -4179,7 +4161,6 @@
             }, 3000);
         }
 
-        // Add notification animations
         const style = document.createElement('style');
         style.textContent = `
             @keyframes slideIn {
@@ -4250,7 +4231,7 @@
                 } else {
                     heroCards.scrollBy({ left: step, behavior: 'smooth' });
                 }
-            }, 1800); // Slide one product at a time every 1.8 seconds
+            }, 1800);
 
             heroCards.addEventListener('mouseenter', () => paused = true);
             heroCards.addEventListener('mouseleave', () => paused = false);
@@ -4292,7 +4273,7 @@
                 } else {
                     reviewsGrid.scrollBy({ left: step, behavior: 'smooth' });
                 }
-            }, 1800); // Slide one review every 1.8 seconds
+            }, 1800);
 
             reviewsGrid.addEventListener('mouseenter', () => paused = true);
             reviewsGrid.addEventListener('mouseleave', () => paused = false);
@@ -4413,7 +4394,6 @@
             animate();
         }
 
-        // Initialize cart display on page load
         document.addEventListener('DOMContentLoaded', function() {
             setupTransitionLinks();
             updateCartDisplay();
@@ -4425,8 +4405,8 @@
         });
 
         function showHome() {
-    window.location.href = 'index.html';
-}
+            window.location.href = 'index.html';
+        }
 
         function toggleMobileMenu() {
             const nav = document.getElementById('navLinks');
