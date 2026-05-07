@@ -56,12 +56,9 @@
         }
 
         .hero .container {
-            max-width: 100%; 
-            padding: 0 32px; 
+            max-width: 100%; /* Allow content to span full width of the hero section */
+            padding: 0 32px; /* Maintain standard horizontal padding */
         }
-
-        .mobile-menu-btn { display: none; background: transparent; border: none; color: #fff; cursor: pointer; padding: 0.4rem; border-radius: 8px; transition: background 0.2s; z-index: 101; }
-        .mobile-menu-btn:hover { background: rgba(255,255,255,0.1); }
 
         @media (max-width: 760px) {
             .container {
@@ -70,12 +67,9 @@
             }
 
             .hero .container {
-                max-width: 100%; 
-                padding: 0 18px; 
+                max-width: 100%; /* Ensure full width on smaller screens too */
+                padding: 0 18px; /* Apply standard mobile padding */
             }
-            
-            nav { flex-wrap: wrap; position: relative; justify-content: space-between; align-items: center; }
-            .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
         }
         
         nav {
@@ -197,6 +191,8 @@
         .nav-links .dropdown-menu a { display: block; padding: 0.7rem 1.2rem; color: rgba(255,255,255,0.85); border-radius: 0; transition: background 0.2s ease; text-align: center; font-size: 0.9rem; }
         .nav-links .dropdown-menu a:hover { background: rgba(255,255,255,0.1); color: #fff; transform: none; }
 
+        .mobile-menu-btn { display: none; background: transparent; border: none; color: #fff; cursor: pointer; padding: 0.4rem; border-radius: 8px; transition: background 0.2s; z-index: 101; }
+        .mobile-menu-btn:hover { background: rgba(255,255,255,0.1); }
         .mobile-socials { display: none !important; }
         .mobile-menu-close { display: none; }
         .menu-backdrop { visibility: hidden; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 999; opacity: 0; transition: opacity 0.3s ease, visibility 0.3s ease; }
@@ -266,10 +262,12 @@
             .nav-links .mobile-socials a:hover {
                 background: rgba(124,92,255,0.2);
             }
+            nav { flex-wrap: wrap; position: relative; justify-content: space-between; align-items: center; }
+            .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
         }
 
         /* ========================
-            PAGE SECTIONS
+           PAGE SECTIONS
         ======================== */
         .page {
             display: none;
@@ -422,7 +420,7 @@
         }
 
         /* ========================
-            HOME PAGE
+           HOME PAGE
         ======================== */
         .hero {
             position: relative;
@@ -834,6 +832,7 @@
             min-height: 220px;
             padding: 1rem;
             border-radius: 28px;
+            background: linear-gradient(160deg, rgba(20, 28, 56, 0.7), rgba(10, 14, 32, 0.8));
             background: linear-gradient(160deg, rgba(20, 28, 56, 0.9), rgba(10, 14, 32, 0.95));
             border: 1px solid rgba(255,255,255,0.18);
             box-shadow: 0 24px 80px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.12);
@@ -1200,6 +1199,21 @@
         @keyframes cardAppear {
             0% { opacity: 0; transform: translateY(42px); }
             100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 4rem 0 2rem;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
         }
         
         .products {
@@ -2182,7 +2196,7 @@
         }
 
         /* ========================
-            PRODUCT DETAIL PAGE
+           PRODUCT DETAIL PAGE
         ======================== */
         .breadcrumb {
             background: rgba(255,255,255,0.05);
@@ -3014,12 +3028,678 @@
             from { transform: translateX(100%); }
             to { transform: translateX(0); }
         }
+
+        /* ==================================================
+           FINAL PREMIUM MENU REBUILD: fixed scroll, alignment,
+           hamburger-only button, and visible bottom CTAs
+           ================================================== */
+        .mobile-menu-btn,
+        .premium-menu-overlay,
+        .premium-mobile-menu {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            body.menu-open {
+                overflow: hidden !important;
+                touch-action: auto !important;
+            }
+
+            .site-header {
+                position: relative !important;
+                z-index: 1800 !important;
+            }
+
+            .site-header nav.container {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+            }
+
+            .site-header .nav-links {
+                display: none !important;
+            }
+
+            .mobile-menu-btn {
+                width: 48px !important;
+                height: 48px !important;
+                min-width: 48px !important;
+                border-radius: 18px !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                padding: 0 !important;
+                border: 1px solid rgba(255, 255, 255, 0.16) !important;
+                background: linear-gradient(135deg, rgba(124, 92, 255, 0.28), rgba(87, 188, 255, 0.14)), rgba(255, 255, 255, 0.065) !important;
+                box-shadow: 0 18px 42px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.11) !important;
+                backdrop-filter: blur(16px) !important;
+                -webkit-backdrop-filter: blur(16px) !important;
+                color: #fff !important;
+                transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+            }
+
+            .mobile-menu-btn:hover {
+                transform: translateY(-1px) !important;
+                border-color: rgba(124, 102, 255, 0.5) !important;
+                box-shadow: 0 20px 46px rgba(0, 0, 0, 0.36), 0 0 22px rgba(87, 188, 255, 0.12) !important;
+            }
+
+            .mobile-menu-lines {
+                width: 22px !important;
+                display: inline-flex !important;
+                flex-direction: column !important;
+                gap: 5px !important;
+            }
+            .mobile-menu-btn .menu-line {
+                display: block !important;
+                width: 22px !important;
+                height: 2px !important;
+                border-radius: 999px !important;
+                background: #ffffff !important;
+                box-shadow: 0 0 12px rgba(87, 188, 255, 0.5) !important;
+                transition: transform 0.25s ease, opacity 0.25s ease !important;
+            }
+            body.menu-open .mobile-menu-btn .menu-line:nth-child(1) {
+                transform: translateY(7px) rotate(45deg) !important;
+            }
+
+            body.menu-open .mobile-menu-btn .menu-line:nth-child(2) {
+                opacity: 0 !important;
+            }
+
+            body.menu-open .mobile-menu-btn .menu-line:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg) !important;
+            }
+            .premium-menu-overlay {
+                position: fixed !important;
+                inset: 0 !important;
+                display: block !important;
+                background: rgba(1, 5, 18, 0.72) !important;
+                backdrop-filter: blur(10px) saturate(1.12) !important;
+                -webkit-backdrop-filter: blur(10px) saturate(1.12) !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+                z-index: 2100 !important;
+                transition: opacity 0.28s ease !important;
+            }
+
+            .premium-menu-overlay.active {
+                opacity: 1 !important;
+                pointer-events: auto !important;
+            }
+
+            .premium-mobile-menu {
+                position: fixed !important;
+                top: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                display: block !important;
+                width: min(92vw, 430px) !important;
+                height: 100vh !important;
+                height: 100dvh !important;
+                max-height: 100dvh !important;
+                padding: 0 !important;
+                gap: 0 !important;
+                background:
+                    radial-gradient(circle at 22% 0%, rgba(124, 92, 255, 0.35), transparent 34%),
+                    radial-gradient(circle at 105% 26%, rgba(87, 188, 255, 0.22), transparent 33%),
+                    linear-gradient(180deg, rgba(8, 13, 34, 0.99), rgba(4, 7, 20, 0.995)) !important;
+                border-left: 1px solid rgba(255, 255, 255, 0.12) !important;
+                box-shadow: -30px 0 90px rgba(0, 0, 0, 0.58) !important;
+                z-index: 2200 !important;
+                transform: translateX(105%) !important;
+                transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1) !important;
+                overflow: hidden !important;
+                isolation: isolate !important;
+            }
+
+            .premium-mobile-menu.active {
+                transform: translateX(0) !important;
+            }
+
+            .premium-mobile-menu::before {
+                content: '' !important;
+                position: absolute !important;
+                inset: 0 !important;
+                pointer-events: none !important;
+                background:
+                    linear-gradient(135deg, rgba(255,255,255,0.08), transparent 24%, rgba(255,255,255,0.025) 64%, transparent),
+                    repeating-linear-gradient(135deg, rgba(255,255,255,0.022) 0 1px, transparent 1px 12px) !important;
+                opacity: 0.46 !important;
+                z-index: -1 !important;
+            }
+
+            .premium-menu-inner {
+                position: relative !important;
+                height: 100% !important;
+                max-height: 100dvh !important;
+                min-height: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                overflow: hidden !important;
+            }
+
+            .premium-menu-scroll {
+                flex: 1 1 auto !important;
+                min-height: 0 !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+                -webkit-overflow-scrolling: touch !important;
+                overscroll-behavior: contain !important;
+                padding: max(16px, env(safe-area-inset-top, 0px)) 16px 18px !important;
+                scrollbar-width: thin !important;
+                scrollbar-color: rgba(255,255,255,0.24) transparent !important;
+            }
+
+            .premium-menu-scroll::-webkit-scrollbar {
+                width: 4px !important;
+            }
+
+            .premium-menu-scroll::-webkit-scrollbar-thumb {
+                background: rgba(255,255,255,0.24) !important;
+                border-radius: 999px !important;
+            }
+
+            .premium-menu-hero,
+            .premium-welcome-card,
+            .premium-search-card,
+            .premium-menu-section,
+            .premium-picks-card {
+                background:
+                    linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,255,255,0.035)),
+                    rgba(12, 18, 40, 0.72) !important;
+                border: 1px solid rgba(255,255,255,0.11) !important;
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 18px 45px rgba(0,0,0,0.22) !important;
+                backdrop-filter: blur(18px) !important;
+                -webkit-backdrop-filter: blur(18px) !important;
+            }
+
+            .premium-menu-hero {
+                display: grid !important;
+                grid-template-columns: 58px minmax(0, 1fr) 44px !important;
+                align-items: center !important;
+                gap: 14px !important;
+                border-radius: 34px !important;
+                padding: 1.1rem !important;
+                margin: 0 0 1rem !important;
+            }
+
+            .premium-menu-logo {
+                width: 58px !important;
+                height: 58px !important;
+                border-radius: 22px !important;
+                display: grid !important;
+                place-items: center !important;
+                background: linear-gradient(135deg, rgba(124,102,255,0.58), rgba(87,188,255,0.2)) !important;
+                border: 1px solid rgba(255,255,255,0.13) !important;
+                color: #fff !important;
+                font-weight: 900 !important;
+                font-size: 1.15rem !important;
+                letter-spacing: 0 !important;
+            }
+
+            .premium-menu-title-wrap {
+                min-width: 0 !important;
+                text-align: left !important;
+            }
+
+            .premium-menu-title-wrap p {
+                margin: 0 0 0.25rem !important;
+                color: #9ed2ff !important;
+                font-size: 0.72rem !important;
+                font-weight: 900 !important;
+                letter-spacing: 0.24em !important;
+                text-transform: uppercase !important;
+            }
+
+            .premium-menu-title-wrap h2 {
+                margin: 0 !important;
+                color: #fff !important;
+                font-size: 1.45rem !important;
+                line-height: 1.08 !important;
+                letter-spacing: -0.035em !important;
+            }
+
+            .premium-menu-title-wrap span {
+                display: block !important;
+                margin-top: 0.35rem !important;
+                color: rgba(238,243,255,0.68) !important;
+                font-size: 0.86rem !important;
+                line-height: 1.35 !important;
+                white-space: normal !important;
+            }
+
+            .premium-menu-close {
+                width: 44px !important;
+                height: 44px !important;
+                border: none !important;
+                border-radius: 18px !important;
+                background: rgba(255,255,255,0.09) !important;
+                color: #fff !important;
+                font-size: 1.8rem !important;
+                line-height: 1 !important;
+                cursor: pointer !important;
+            }
+
+            .premium-welcome-card {
+                display: grid !important;
+                grid-template-columns: 48px minmax(0, 1fr) !important;
+                align-items: center !important;
+                gap: 0.85rem !important;
+                min-height: 76px !important;
+                border-radius: 24px !important;
+                padding: 0.9rem 1rem !important;
+                margin: 0 0 1rem !important;
+                text-align: left !important;
+                overflow: visible !important;
+            }
+
+            .premium-welcome-icon {
+                width: 48px !important;
+                height: 48px !important;
+                border-radius: 18px !important;
+                display: grid !important;
+                place-items: center !important;
+                background: linear-gradient(135deg, #7c66ff, #57bcff) !important;
+                box-shadow: 0 16px 32px rgba(87,188,255,0.18) !important;
+            }
+
+            .premium-welcome-text {
+                min-width: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: flex-start !important;
+                text-align: left !important;
+            }
+
+            .premium-welcome-text strong {
+                color: #fff !important;
+                font-size: 1rem !important;
+                line-height: 1.18 !important;
+                white-space: normal !important;
+                text-align: left !important;
+            }
+
+            .premium-welcome-text span {
+                margin-top: 0.22rem !important;
+                color: rgba(238,243,255,0.66) !important;
+                font-size: 0.78rem !important;
+                line-height: 1.35 !important;
+                text-align: left !important;
+            }
+
+            .premium-welcome-text .premium-account-link {
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 0.35rem !important;
+                margin-top: 0.48rem !important;
+                color: #9ed2ff !important;
+                font-size: 0.78rem !important;
+                font-weight: 900 !important;
+                text-decoration: none !important;
+            }
+
+            .premium-search-card {
+                width: 100% !important;
+                display: grid !important;
+                grid-template-columns: 24px minmax(0, 1fr) auto !important;
+                align-items: center !important;
+                gap: 0.85rem !important;
+                min-height: 72px !important;
+                border-radius: 26px !important;
+                padding: 0 1rem !important;
+                color: #fff !important;
+                text-align: left !important;
+                cursor: pointer !important;
+                margin: 0 0 1rem !important;
+            }
+
+            .premium-search-card span {
+                font-size: 1rem !important;
+                font-weight: 900 !important;
+            }
+
+            .premium-search-card em {
+                font-style: normal !important;
+                font-size: 0.74rem !important;
+                color: rgba(238,243,255,0.72) !important;
+                border: 1px solid rgba(255,255,255,0.14) !important;
+                border-radius: 999px !important;
+                padding: 0.32rem 0.6rem !important;
+            }
+
+            .premium-quick-grid {
+                display: grid !important;
+                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+                gap: 0.7rem !important;
+                margin: 0 0 1rem !important;
+            }
+
+            .premium-quick-grid .premium-quick-action {
+                min-height: 92px !important;
+                border-radius: 22px !important;
+                display: grid !important;
+                place-items: center !important;
+                gap: 0.42rem !important;
+                text-align: center !important;
+                background: rgba(255,255,255,0.055) !important;
+                border: 1px solid rgba(255,255,255,0.1) !important;
+                color: #fff !important;
+                text-decoration: none !important;
+                font-size: 0.74rem !important;
+                font-weight: 900 !important;
+            }
+
+            .premium-quick-grid .premium-quick-action span {
+                width: 40px !important;
+                height: 40px !important;
+                border-radius: 16px !important;
+                display: grid !important;
+                place-items: center !important;
+                background: rgba(124,102,255,0.28) !important;
+            }
+
+            .premium-quick-grid .premium-quick-action strong {
+                font-size: 0.74rem !important;
+                line-height: 1.1 !important;
+            }
+
+            .premium-menu-section {
+                border-radius: 30px !important;
+                padding: 1rem !important;
+                margin: 0 0 1rem !important;
+                display: grid !important;
+                gap: 0.75rem !important;
+            }
+
+            .premium-section-heading {
+                display: flex !important;
+                align-items: center !important;
+                gap: 0.8rem !important;
+                margin-bottom: 0.05rem !important;
+            }
+
+            .premium-section-heading span {
+                color: rgba(238,243,255,0.58) !important;
+                font-size: 0.72rem !important;
+                letter-spacing: 0.22em !important;
+                text-transform: uppercase !important;
+                font-weight: 900 !important;
+            }
+
+            .premium-section-heading::after {
+                content: "" !important;
+                height: 1px !important;
+                flex: 1 !important;
+                background: rgba(255,255,255,0.12) !important;
+            }
+
+            .premium-nav-item {
+                display: grid !important;
+                grid-template-columns: 46px minmax(0, 1fr) auto !important;
+                align-items: center !important;
+                gap: 0.8rem !important;
+                padding: 0.9rem !important;
+                border-radius: 22px !important;
+                color: #fff !important;
+                text-decoration: none !important;
+                background: rgba(255,255,255,0.045) !important;
+                border: 1px solid rgba(255,255,255,0.07) !important;
+                margin: 0 !important;
+            }
+
+            .premium-nav-icon {
+                width: 46px !important;
+                height: 46px !important;
+                border-radius: 17px !important;
+                display: grid !important;
+                place-items: center !important;
+                background: rgba(124,102,255,0.22) !important;
+            }
+
+            .premium-nav-text {
+                min-width: 0 !important;
+                display: block !important;
+            }
+
+            .premium-nav-text strong {
+                display: block !important;
+                font-size: 0.98rem !important;
+                line-height: 1.15 !important;
+            }
+
+            .premium-nav-text small {
+                display: block !important;
+                margin-top: 0.3rem !important;
+                color: rgba(238,243,255,0.58) !important;
+                font-size: 0.75rem !important;
+                font-weight: 700 !important;
+            }
+
+            .premium-arrow {
+                color: #8ed4ff !important;
+                font-size: 1.4rem !important;
+                line-height: 1 !important;
+            }
+
+            .premium-menu-section a.premium-nav-item:hover,
+            .premium-menu-section a.premium-nav-item:focus-visible {
+                transform: translateX(-2px);
+                background: rgba(124, 102, 255, 0.16);
+                border-color: rgba(124, 102, 255, 0.28);
+                outline: none;
+            }
+
+            .premium-menu-section a.premium-nav-item:hover .premium-arrow {
+                transform: translateX(2px);
+            }
+
+            .premium-menu-chips {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 0.55rem !important;
+                margin: 0 !important;
+            }
+
+            .premium-menu-chip {
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                padding: 0.65rem 0.85rem !important;
+                border-radius: 999px !important;
+                background: rgba(255,255,255,0.065) !important;
+                border: 1px solid rgba(255,255,255,0.09) !important;
+                color: #f5f8ff !important;
+                font-size: 0.78rem !important;
+                font-weight: 850 !important;
+                text-decoration: none !important;
+            }
+
+            .premium-menu-chip.hot {
+                background: linear-gradient(135deg, rgba(124,102,255,0.28), rgba(87,188,255,0.16)) !important;
+                border-color: rgba(124,102,255,0.32) !important;
+            }
+
+            .premium-benefits {
+                display: grid !important;
+                grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+                gap: 0.7rem !important;
+                margin: 0 0 1rem !important;
+            }
+
+            .premium-benefit {
+                min-height: 74px !important;
+                padding: 0.75rem 0.55rem !important;
+                border-radius: 20px !important;
+                background: rgba(255,255,255,0.055) !important;
+                border: 1px solid rgba(255,255,255,0.1) !important;
+                text-align: center !important;
+                display: grid !important;
+                place-items: center !important;
+                gap: 0.18rem !important;
+            }
+
+            .premium-benefit strong {
+                color: #fff !important;
+                font-size: 0.86rem !important;
+            }
+
+            .premium-benefit span {
+                color: rgba(238,243,255,0.62) !important;
+                font-size: 0.68rem !important;
+            }
+
+            .premium-picks-card {
+                border-radius: 30px !important;
+                padding: 1rem !important;
+                margin: 0 0 1rem !important;
+                text-align: left !important;
+                display: grid !important;
+                gap: 1rem !important;
+            }
+
+            .premium-picks-top {
+                display: grid !important;
+                grid-template-columns: 48px minmax(0, 1fr) !important;
+                align-items: center !important;
+                gap: 0.85rem !important;
+                text-align: left !important;
+            }
+
+            .premium-picks-icon {
+                width: 48px !important;
+                height: 48px !important;
+                border-radius: 18px !important;
+                display: grid !important;
+                place-items: center !important;
+                background: linear-gradient(135deg, rgba(124,102,255,0.6), rgba(87,188,255,0.22)) !important;
+                flex: 0 0 auto !important;
+            }
+
+            .premium-picks-copy {
+                min-width: 0 !important;
+                text-align: left !important;
+            }
+
+            .premium-picks-copy strong {
+                display: block !important;
+                color: #fff !important;
+                font-size: 1rem !important;
+                line-height: 1.2 !important;
+                text-align: left !important;
+            }
+
+            .premium-picks-copy span {
+                display: block !important;
+                margin-top: 0.35rem !important;
+                color: rgba(238,243,255,0.66) !important;
+                font-size: 0.8rem !important;
+                line-height: 1.45 !important;
+                text-align: left !important;
+            }
+
+            .premium-picks-card a {
+                display: grid !important;
+                place-items: center !important;
+                width: 100% !important;
+                min-height: 48px !important;
+                border-radius: 18px !important;
+                background: linear-gradient(135deg, #667eea, #764ba2) !important;
+                color: #fff !important;
+                font-weight: 900 !important;
+                text-decoration: none !important;
+                box-shadow: 0 18px 38px rgba(102,126,234,0.25);
+            }
+
+            .premium-menu-bottom {
+                flex: 0 0 auto !important;
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 0.75rem !important;
+                padding: 0.85rem 16px calc(0.95rem + env(safe-area-inset-bottom, 0px)) !important;
+                background: linear-gradient(180deg, rgba(5,8,22,0), rgba(5,8,22,0.95) 23%, rgba(5,8,22,0.995)) !important;
+                border-top: 1px solid rgba(255,255,255,0.09) !important;
+                backdrop-filter: blur(16px) !important;
+                -webkit-backdrop-filter: blur(16px) !important;
+                z-index: 5 !important;
+            }
+
+            .premium-menu-bottom button,
+            .premium-menu-bottom a {
+                min-height: 50px !important;
+                border-radius: 18px !important;
+                display: grid !important;
+                place-items: center !important;
+                border: none !important;
+                color: #fff !important;
+                font-weight: 900 !important;
+                text-decoration: none !important;
+                cursor: pointer !important;
+                font-size: 0.92rem !important;
+            }
+
+            .premium-menu-bottom button {
+                background: rgba(255,255,255,0.09) !important;
+                border: 1px solid rgba(255,255,255,0.13) !important;
+            }
+
+            .premium-menu-bottom a {
+                background: linear-gradient(135deg, #667eea, #764ba2) !important;
+                box-shadow: 0 18px 38px rgba(102,126,234,0.28) !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .premium-mobile-menu {
+                width: 94vw !important;
+            }
+
+            .premium-menu-hero {
+                grid-template-columns: 52px minmax(0, 1fr) 40px !important;
+                padding: 0.95rem !important;
+                border-radius: 28px !important;
+            }
+
+            .premium-menu-logo {
+                width: 52px !important;
+                height: 52px !important;
+            }
+
+            .premium-menu-title-wrap h2 {
+                font-size: 1.25rem !important;
+            }
+
+            .premium-menu-title-wrap span {
+                font-size: 0.78rem !important;
+            }
+
+            .premium-quick-grid {
+                gap: 0.55rem !important;
+            }
+
+            .premium-quick-grid .premium-quick-action {
+                min-height: 82px !important;
+                border-radius: 18px !important;
+            }
+
+            .premium-quick-grid .premium-quick-action strong {
+                font-size: 0.68rem !important;
+            }
+
+            .premium-benefits {
+                gap: 0.55rem !important;
+            }
+
+            .premium-benefit {
+                min-height: 68px !important;
+            }
+        }
     </style>
 </head>
 <body>
     <canvas id="hero-network" class="hero-network"></canvas>
     <div class="premium-particles" id="premium-particles"></div>
-    <div class="menu-backdrop" id="menuBackdrop" onclick="toggleMobileMenu()"></div>
     <header class="site-header">
         <nav class="container">
             <a class="logo" href="index.html">
@@ -3031,11 +3711,15 @@
                     <span class="brand-tagline">Curated trend delivery</span>
                 </div>
             </a>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            
+            <button class="mobile-menu-btn" type="button" onclick="togglePremiumMenu(true)" aria-label="Open premium menu" aria-controls="premiumMobileMenu" aria-expanded="false">
+                <span class="mobile-menu-lines" aria-hidden="true">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                </span>
             </button>
-            <ul class="nav-links" id="navLinks">
-                <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">×</button>
+            <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="about.html">About</a></li>
@@ -3048,14 +3732,265 @@
                 </li>
                 <li><a class="cart-link" href="javascript:void(0)" onclick="toggleCart(event); return false;">Cart (0)</a></li>
                 <li><a class="cta" href="/trendifyo/login.html">Login</a></li>
-                <li class="mobile-socials">
-                    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-                    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-                    <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
-                </li>
             </ul>
         </nav>
     </header>
+
+    <div class="premium-menu-overlay" id="premiumMenuOverlay" onclick="togglePremiumMenu(false)"></div>
+
+    <aside class="premium-mobile-menu" id="premiumMobileMenu" aria-hidden="true" aria-label="Premium mobile navigation">
+        <div class="premium-menu-inner">
+            <div class="premium-menu-scroll">
+                <div class="premium-menu-hero">
+                    <div class="premium-menu-logo" aria-hidden="true">T</div>
+                    <div class="premium-menu-title-wrap">
+                        <p>Trendifyo Club</p>
+                        <h2>Premium Menu</h2>
+                        <span>Curated shortcuts for faster shopping</span>
+                    </div>
+                    <button class="premium-menu-close" type="button" onclick="togglePremiumMenu(false)" aria-label="Close menu">×</button>
+                </div>
+
+                <div class="premium-welcome-card">
+                    <div class="premium-welcome-icon" aria-hidden="true">✨</div>
+                    <div class="premium-welcome-text">
+                        <strong>Welcome to Trendifyo</strong>
+                        <span>Premium picks, smart deals, and quick shopping shortcuts.</span>
+                        <a class="premium-account-link" href="/trendifyo/login.html" onclick="togglePremiumMenu(false)">Login / Account <span>›</span></a>
+                    </div>
+                </div>
+
+                <button class="premium-search-card" type="button" onclick="openPremiumMenuSearch()">
+                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>Search products</span>
+                    <em>Tap</em>
+                </button>
+
+                <div class="premium-quick-grid" aria-label="Quick actions">
+                    <a class="premium-quick-action" href="shop.html" onclick="togglePremiumMenu(false)">
+                        <span>🛍️</span>
+                        <strong>Shop</strong>
+                    </a>
+                    <a class="premium-quick-action" href="javascript:void(0)" onclick="openPremiumMenuCart(event)">
+                        <span>🛒</span>
+                        <strong>Cart</strong>
+                    </a>
+                    <a class="premium-quick-action" href="shop.html#products" onclick="togglePremiumMenu(false)">
+                        <span>⚡</span>
+                        <strong>Deals</strong>
+                    </a>
+                    <a class="premium-quick-action premium-account-shortcut" href="/trendifyo/login.html" onclick="togglePremiumMenu(false)">
+                        <span>👤</span>
+                        <strong>Account</strong>
+                    </a>
+                </div>
+
+                <section class="premium-menu-section premium-nav-section">
+                    <div class="premium-section-heading"><span>Navigation</span></div>
+
+                    <a class="premium-nav-item" href="index.html" onclick="togglePremiumMenu(false)">
+                        <span class="premium-nav-icon">🏠</span>
+                        <span class="premium-nav-text">
+                            <strong>Home</strong>
+                            <small>Back to the storefront</small>
+                        </span>
+                        <span class="premium-arrow">›</span>
+                    </a>
+
+                    <a class="premium-nav-item" href="shop.html" onclick="togglePremiumMenu(false)">
+                        <span class="premium-nav-icon">✨</span>
+                        <span class="premium-nav-text">
+                            <strong>Shop</strong>
+                            <small>Browse premium picks</small>
+                        </span>
+                        <span class="premium-arrow">›</span>
+                    </a>
+
+                    <a class="premium-nav-item" href="about.html" onclick="togglePremiumMenu(false)">
+                        <span class="premium-nav-icon">💎</span>
+                        <span class="premium-nav-text">
+                            <strong>About</strong>
+                            <small>Know the Trendifyo story</small>
+                        </span>
+                        <span class="premium-arrow">›</span>
+                    </a>
+
+                    <a class="premium-nav-item" href="contact.html" onclick="togglePremiumMenu(false)">
+                        <span class="premium-nav-icon">💬</span>
+                        <span class="premium-nav-text">
+                            <strong>Contact</strong>
+                            <small>Fast help and support</small>
+                        </span>
+                        <span class="premium-arrow">›</span>
+                    </a>
+                </section>
+
+                <section class="premium-menu-section premium-mood-section">
+                    <div class="premium-section-heading"><span>Shop by mood</span></div>
+                    <div class="premium-menu-chips">
+                        <a class="premium-menu-chip hot" href="shop.html#products" onclick="togglePremiumMenu(false)">🔥 Trending</a>
+                        <a class="premium-menu-chip" href="shop.html" onclick="togglePremiumMenu(false)">🏡 Home</a>
+                        <a class="premium-menu-chip" href="shop.html" onclick="togglePremiumMenu(false)">🎧 Electronics</a>
+                        <a class="premium-menu-chip" href="shop.html" onclick="togglePremiumMenu(false)">⛺ Camping</a>
+                        <a class="premium-menu-chip" href="shop.html" onclick="togglePremiumMenu(false)">🎁 Deals</a>
+                    </div>
+                </section>
+
+                <div class="premium-benefits">
+                    <div class="premium-benefit"><strong>Fast</strong><span>Quick support</span></div>
+                    <div class="premium-benefit"><strong>Curated</strong><span>Smart picks</span></div>
+                    <div class="premium-benefit"><strong>Value</strong><span>Better deals</span></div>
+                </div>
+
+                <section class="premium-picks-card">
+                    <div class="premium-picks-top">
+                        <div class="premium-picks-icon" aria-hidden="true">🔥</div>
+                        <div class="premium-picks-copy">
+                            <strong>Today’s Premium Picks</strong>
+                            <span>Fresh deals and curated lifestyle gear selected for you.</span>
+                        </div>
+                    </div>
+                    <a href="shop.html" onclick="togglePremiumMenu(false)">Explore Premium Picks</a>
+                </section>
+            </div>
+
+            <div class="premium-menu-bottom">
+                <button type="button" onclick="openPremiumMenuCart(event)">🛒 Cart</button>
+                <a href="shop.html" onclick="togglePremiumMenu(false)">Shop Now</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="premium-menu-overlay" id="premiumMenuOverlay" onclick="togglePremiumMenu(false)"></div>
+
+    <aside class="premium-mobile-menu" id="premiumMobileMenu" aria-hidden="true" aria-label="Premium mobile navigation">
+        <div class="premium-menu-inner">
+            <div class="premium-menu-scroll">
+                <div class="premium-menu-hero">
+                    <div class="premium-menu-logo" aria-hidden="true">T</div>
+                    <div class="premium-menu-title-wrap">
+                        <p>Trendifyo Club</p>
+                        <h2>Premium Menu</h2>
+                        <span>Curated shortcuts for faster shopping</span>
+                    </div>
+                    <button class="premium-menu-close" type="button" onclick="togglePremiumMenu(false)" aria-label="Close menu">×</button>
+                </div>
+
+                <div class="premium-welcome-card">
+                    <div class="premium-welcome-icon" aria-hidden="true">✨</div>
+                    <div class="premium-welcome-text">
+                        <strong>Welcome to Trendifyo</strong>
+                        <span>Premium picks, smart deals, and quick shopping shortcuts.</span>
+                        <a class="premium-account-link" href="/trendifyo/login.html" onclick="togglePremiumMenu(false)">Login / Account <span>›</span></a>
+                    </div>
+                </div>
+
+                <button class="premium-search-card" type="button" onclick="openPremiumMenuSearch()">
+                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>Search products</span>
+                    <em>Tap</em>
+                </button>
+
+                <div class="premium-quick-grid" aria-label="Quick actions">
+                    <a class="premium-quick-action" href="shop.html" onclick="togglePremiumMenu(false)">
+                        <span>🛍️</span>
+                        <strong>Shop</strong>
+                    </a>
+                    <a class="premium-quick-action" href="javascript:void(0)" onclick="openPremiumMenuCart(event)">
+                        <span>🛒</span>
+                        <strong>Cart</strong>
+                    </a>
+                    <a class="premium-quick-action" href="shop.html#products" onclick="togglePremiumMenu(false)">
+                        <span>⚡</span>
+                        <strong>Deals</strong>
+                    </a>
+                    <a class="premium-quick-action premium-account-shortcut" href="/trendifyo/login.html" onclick="togglePremiumMenu(false)">
+                        <span>👤</span>
+                        <strong>Account</strong>
+                    </a>
+                </div>
+
+                <section class="premium-menu-section premium-nav-section">
+                    <div class="premium-section-heading"><span>Navigation</span></div>
+
+                    <a class="premium-nav-item" href="index.html" onclick="togglePremiumMenu(false)">
+                        <span class="premium-nav-icon">🏠</span>
+                        <span class="premium-nav-text">
+                            <strong>Home</strong>
+                            <small>Back to the storefront</small>
+                        </span>
+                        <span class="premium-arrow">›</span>
+                    </a>
+
+                    <a class="premium-nav-item" href="shop.html" onclick="togglePremiumMenu(false)">
+                        <span class="premium-nav-icon">✨</span>
+                        <span class="premium-nav-text">
+                            <strong>Shop</strong>
+                            <small>Browse premium picks</small>
+                        </span>
+                        <span class="premium-arrow">›</span>
+                    </a>
+
+                    <a class="premium-nav-item" href="about.html" onclick="togglePremiumMenu(false)">
+                        <span class="premium-nav-icon">💎</span>
+                        <span class="premium-nav-text">
+                            <strong>About</strong>
+                            <small>Know the Trendifyo story</small>
+                        </span>
+                        <span class="premium-arrow">›</span>
+                    </a>
+
+                    <a class="premium-nav-item" href="contact.html" onclick="togglePremiumMenu(false)">
+                        <span class="premium-nav-icon">💬</span>
+                        <span class="premium-nav-text">
+                            <strong>Contact</strong>
+                            <small>Fast help and support</small>
+                        </span>
+                        <span class="premium-arrow">›</span>
+                    </a>
+                </section>
+
+                <section class="premium-menu-section premium-mood-section">
+                    <div class="premium-section-heading"><span>Shop by mood</span></div>
+                    <div class="premium-menu-chips">
+                        <a class="premium-menu-chip hot" href="shop.html#products" onclick="togglePremiumMenu(false)">🔥 Trending</a>
+                        <a class="premium-menu-chip" href="shop.html" onclick="togglePremiumMenu(false)">🏡 Home</a>
+                        <a class="premium-menu-chip" href="shop.html" onclick="togglePremiumMenu(false)">🎧 Electronics</a>
+                        <a class="premium-menu-chip" href="shop.html" onclick="togglePremiumMenu(false)">⛺ Camping</a>
+                        <a class="premium-menu-chip" href="shop.html" onclick="togglePremiumMenu(false)">🎁 Deals</a>
+                    </div>
+                </section>
+
+                <div class="premium-benefits">
+                    <div class="premium-benefit"><strong>Fast</strong><span>Quick support</span></div>
+                    <div class="premium-benefit"><strong>Curated</strong><span>Smart picks</span></div>
+                    <div class="premium-benefit"><strong>Value</strong><span>Better deals</span></div>
+                </div>
+
+                <section class="premium-picks-card">
+                    <div class="premium-picks-top">
+                        <div class="premium-picks-icon" aria-hidden="true">🔥</div>
+                        <div class="premium-picks-copy">
+                            <strong>Today’s Premium Picks</strong>
+                            <span>Fresh deals and curated lifestyle gear selected for you.</span>
+                        </div>
+                    </div>
+                    <a href="shop.html" onclick="togglePremiumMenu(false)">Explore Premium Picks</a>
+                </section>
+            </div>
+
+            <div class="premium-menu-bottom">
+                <button type="button" onclick="openPremiumMenuCart(event)">🛒 Cart</button>
+                <a href="shop.html" onclick="togglePremiumMenu(false)">Shop Now</a>
+            </div>
+        </div>
+    </aside>
 
     <div id="search-overlay" class="search-overlay">
         <div class="search-overlay-content">
@@ -3072,6 +4007,7 @@
         </div>
     </div>
 
+    <canvas id="hero-network" class="hero-network"></canvas>
     <div id="cart-panel" class="cart-panel">
         <div class="cart-backdrop" onclick="toggleCart(false)"></div>
         <div class="cart-drawer">
@@ -3113,7 +4049,7 @@
                     <p>Explore the latest lifestyle essentials, premium gadgets, and curated must-haves designed for modern living.</p>
                     <div class="hero-actions">
                         <a href="shop.html" class="btn btn-primary">Shop Now</a>
-                        <a href="/trendifyo/login.html" class="btn btn-secondary">Join Trendifyo</a>
+                    <a href="/trendifyo/login.html" class="btn btn-secondary premium-account-shortcut">Join Trendifyo</a>
                     </div>
                     <div class="premium-clock" style="gap: 0.6rem;">
                         <span style="font-size: 0.85rem; color: #b6d7ff; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;">Offer valid for</span>
@@ -3718,7 +4654,7 @@
                 category: "Home, Kitchen",
                 price: "₹799",
                 originalPrice: "₹1299",
-                img: "71UtTSjNj+L._SL1500_.jpg",
+                img: "w71UtTSjNj+L._SL1500_.jpg",
                 images: [
                     "71UtTSjNj+L._SL1500_.jpg",
                     "71rHleSBSoL._SL1358_.jpg",
@@ -4134,7 +5070,9 @@
             showNotification(`<div>${product.name} added to cart!</div>${accountMsg}`);
         }
 
+        // This function is not used in index.html, but is present in other files. Keeping it for consistency.
         function showNotification(message) {
+            // Create notification element
             const notification = document.createElement('div');
             notification.innerHTML = message;
             notification.style.cssText = `
@@ -4161,6 +5099,7 @@
             }, 3000);
         }
 
+        // Add notification animations
         const style = document.createElement('style');
         style.textContent = `
             @keyframes slideIn {
@@ -4231,7 +5170,7 @@
                 } else {
                     heroCards.scrollBy({ left: step, behavior: 'smooth' });
                 }
-            }, 1800);
+            }, 1800); // Slide one product at a time every 1.8 seconds
 
             heroCards.addEventListener('mouseenter', () => paused = true);
             heroCards.addEventListener('mouseleave', () => paused = false);
@@ -4273,7 +5212,7 @@
                 } else {
                     reviewsGrid.scrollBy({ left: step, behavior: 'smooth' });
                 }
-            }, 1800);
+            }, 1800); // Slide one review every 1.8 seconds
 
             reviewsGrid.addEventListener('mouseenter', () => paused = true);
             reviewsGrid.addEventListener('mouseleave', () => paused = false);
@@ -4388,12 +5327,27 @@
                             ctx.stroke();
                         }
                     }
+
+            premiumAccountLinks.forEach(link => {
+                if (isLoggedIn) {
+                    link.innerHTML = 'My Account <span>›</span>';
+                    link.href = 'my-account.html';
+                } else {
+                    link.innerHTML = 'Login / Account <span>›</span>';
+                    link.href = '/trendifyo/login.html';
+                }
+            });
+
+            premiumAccountShortcuts.forEach(link => {
+                link.href = isLoggedIn ? 'my-account.html' : '/trendifyo/login.html';
+            });
                 }
                 requestAnimationFrame(animate);
             }
             animate();
         }
 
+        // Initialize cart display on page load
         document.addEventListener('DOMContentLoaded', function() {
             setupTransitionLinks();
             updateCartDisplay();
@@ -4403,17 +5357,6 @@
             initHeroCardsAutoScroll();
             initReviewsAutoScroll();
         });
-
-        function showHome() {
-            window.location.href = 'index.html';
-        }
-
-        function toggleMobileMenu() {
-            const nav = document.getElementById('navLinks');
-            if(nav) nav.classList.toggle('active');
-            const backdrop = document.getElementById('menuBackdrop');
-            if(backdrop) backdrop.classList.toggle('active');
-        }
 
         const scrollTopBtn = document.getElementById('scrollTopBtn');
         if (scrollTopBtn) {
@@ -4447,7 +5390,7 @@
             12: { name: "Mini Drill Machine", category: "Electronics", price: "₹799", img: "10-cordless-screwdriver-set-shopper52-original-imahe24fqudszdtw.webp" },
             13: { name: "Nebulizer", category: "Home, Electronics", price: "₹499", img: "portable-mesh-nebulizer-silent-and-compact-nebulizer-machine-for-original-imahjgp3ugnqf5fm.webp" },
             14: { name: "Sofa Bed With Air Pump", category: "Home", price: "₹1299", img: "97-028-1-seater-126-746-pvc-450-foldable-air-couch-lounge-chair-original-imahcyghngwegb2t.webp" },
-            15: { name: "Power Massager", category: "Home, Electronics", price: "₹999", img: "-OpvaM0uMIwIEflNv_oF.jpg" },
+            15: { name: "Power Massager", category: "Home, Electronics", price: "₹999", img: "Compact Power Massager/-OpvaM0uMIwIEflNv_oF.jpg" },
             16: { name: "Scalp Massager", category: "Health, Home, Outdoor, Electronics", price: "₹799", img: "3-speed-mode-handheld-portable-scalp-scratcher-body-massager-for-original-imah3evw7vugjhjz.webp" },
             17: { name: "Heavy Blower", category: "Home, Electronics", price: "₹1099", img: "-Ok417pA6csVPC7_EIbP.jpg" },
             18: { name: "Period Cramp Massager", category: "Health, Home, Electronics", price: "₹799", img: "1-electric-cordless-heating-pad-for-period-pain-cramp-relief-original-imahgvdzccwhkagv.webp" },
@@ -4499,11 +5442,86 @@
             }
         });
     </script>
+    <script>
+        function togglePremiumMenu(open) {
+            const menu = document.getElementById('premiumMobileMenu');
+            const overlay = document.getElementById('premiumMenuOverlay');
+            const trigger = document.querySelector('.mobile-menu-btn');
+            const scrollArea = menu ? menu.querySelector('.premium-menu-scroll') : null;
+
+            if (!menu || !overlay) return;
+
+            const shouldOpen = typeof open === 'boolean'
+                ? open
+                : !menu.classList.contains('active');
+
+            menu.classList.toggle('active', shouldOpen);
+            overlay.classList.toggle('active', shouldOpen);
+            document.body.classList.toggle('menu-open', shouldOpen);
+            menu.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+
+            if (trigger) {
+                trigger.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+            }
+
+            if (shouldOpen) {
+                if (scrollArea) scrollArea.scrollTop = 0;
+                const firstInteractive = menu.querySelector('.premium-menu-close, button, a');
+                setTimeout(() => firstInteractive && firstInteractive.focus({ preventScroll: true }), 120);
+            } else if (trigger) {
+                trigger.focus({ preventScroll: true });
+            }
+        }
+
+        function openPremiumMenuSearch() {
+            togglePremiumMenu(false);
+            setTimeout(() => {
+                if (typeof openSearchOverlay === 'function') {
+                    openSearchOverlay();
+                }
+            }, 220);
+        }
+
+        function openPremiumMenuCart(event) {
+            if (event && event.preventDefault) event.preventDefault();
+            togglePremiumMenu(false);
+            setTimeout(() => {
+                if (typeof toggleCart === 'function') {
+                    toggleCart(null, true);
+                }
+            }, 220);
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                togglePremiumMenu(false);
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                togglePremiumMenu(false);
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            const menu = document.getElementById('premiumMobileMenu');
+            const trigger = document.querySelector('.mobile-menu-btn');
+
+            if (!document.body.classList.contains('menu-open') || !menu || !trigger) return;
+            if (menu.contains(event.target) || trigger.contains(event.target)) return;
+
+            togglePremiumMenu(false);
+        });
+    </script>
     <script type="module" src="firebase-auth.js"></script>
     <script type="module">
         import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js';
         function updateAuthHeader(isLoggedIn) {
             const authLink = document.querySelector('.nav-links .cta');
+            const premiumAccountLinks = document.querySelectorAll('.premium-account-link');
+            const premiumAccountShortcuts = document.querySelectorAll('.premium-quick-action.premium-account-shortcut, .btn.btn-secondary.premium-account-shortcut');
+
             if (authLink) {
                 if (isLoggedIn) {
                     if (window.location.pathname.includes('my-account.html')) {
@@ -4532,6 +5550,25 @@
                     authLink.onclick = null;
                 }
             }
+
+            const premiumAccountLinks = document.querySelectorAll('.premium-account-link');
+            const premiumAccountShortcuts = document.querySelectorAll('.premium-quick-action.premium-account-shortcut');
+
+            premiumAccountLinks.forEach(link => {
+                if (isLoggedIn) {
+                    link.innerHTML = 'My Account <span>›</span>';
+                    link.href = 'my-account.html';
+                } else {
+                    link.innerHTML = 'Login / Account <span>›</span>';
+                    link.href = '/trendifyo/login.html';
+                }
+            });
+
+            premiumAccountShortcuts.forEach(link => {
+                link.href = isLoggedIn ? 'my-account.html' : '/trendifyo/login.html';
+                // For the mobile menu, also update the text if needed, though the icon might be enough
+                // if (isLoggedIn) link.querySelector('strong').textContent = 'Account';
+            });
         }
         try { onAuthStateChanged(getAuth(), user => { updateAuthHeader(!!user); }); } catch (error) { const profile = JSON.parse(localStorage.getItem('trendifyo_profile') || 'null'); updateAuthHeader(!!(profile && profile.email)); }
     </script>
